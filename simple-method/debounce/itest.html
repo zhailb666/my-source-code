@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>手动实现promise</title>
+        <script src="../../index.js" ></script>
+        <script src="./index.js" ></script>
+        <style>
+            html, body { height: 100%; overflow: auto; }
+        </style>
+        <script>
+            doc(() => {
+                // 写测试代码 可以使用log打印
+                log('防抖测试开始')
+                const lg = debounce(log)
+
+                let time = 1
+                var tTimer = setInterval(() => {
+                        time++
+                        if(time % 100 === 0) {
+                            clearInterval(tTimer)
+                        }
+                        lg('我现在开始执行了（最后执行）')
+                        if(time % 10 === 0) log(`实际点击次数${time}`)
+                }, 10);
+
+            })
+        </script>
+    </head>
+    <body>
+        
+    </body>
+</html>
