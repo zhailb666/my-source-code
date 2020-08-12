@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>手动实现promise</title>
+        <script src="./src/index.js" ></script>
+        <script src="../index.js" ></script>
+        <script src="./v1.index.js" ></script>
+        <style>
+            html, body { height: 100%; overflow: auto; }
+        </style>
+        <script>
+            doc(() => {
+                var target = {
+                    field1: 1,
+                    field2: undefined,
+                    field3: {
+                        child: 'child'
+                    },
+                    field4: [2, 4, 8]
+                };
+                target.target = target;
+                // 写测试代码 可以使用log打印
+                log('v1 测试堆溢出, 循环引用问题')
+                try {
+                    v1deepclone(target)
+                } catch (error) {
+                    log(error)
+                }
+                
+            })
+        </script>
+    </head>
+    <body>
+        
+    </body>
+</html>
