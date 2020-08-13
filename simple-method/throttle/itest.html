@@ -12,17 +12,22 @@
             doc(() => {
                 // 写测试代码 可以使用log打印
                 log('节流测试开始')
-                const lg = throttle(log, 30)
+                const gapTime = 100;
+                const lg = throttle(log, gapTime)
 
                 let time = 1
                 var tTimer = setInterval(() => {
                         time++
                         if(time % 100 === 0) {
                             clearInterval(tTimer)
+                            tTimer = null
+                            setTimeout(() => {
+                                log('总共打印了time 99 次；共用时 1000 ms, 节流执行 (1000/100 - 1) = 9 次')
+                            }, gapTime + 20);
                         }
-                        lg('开始执行了（最后执行）')
+                        log(time)
+                        lg('执行次数加一')
                 }, 10);
-
             })
         </script>
     </head>
