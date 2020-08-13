@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>原型检测</title>
+        <script src="../../index.js" ></script>
+        <script src="./index.js" ></script>
+        <style>
+            html, body { height: 100%; overflow: auto; }
+        </style>
+        <script>
+            doc(() => {
+                // 写测试代码 可以使用log打印
+                log('先写个简单的原型链继承')
+
+                function Person(name) {
+                    this.pType = 'person'
+                }
+
+                function Child(name) {
+                    this.name = name
+                }
+
+                Child.prototype = new Person()
+
+                log('原生的instanceof测试')
+                const p1 = new Child();
+                log(p1 instanceof Person)
+                log(p1 instanceof Child)
+
+                log('myInstanceof测试')
+                log(myInstanceof(p1, Person))
+                log(myInstanceof(p1, Child))
+            })
+        </script>
+    </head>
+    <body>
+        
+    </body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>函数柯里化</title>
+        <script src="../../index.js" ></script>
+        <script src="./index.js" ></script>
+        <style>
+            html, body { height: 100%; overflow: auto; }
+        </style>
+        <script>
+            doc(() => {
+                // 写测试代码 可以使用log打印
+                log('测试函数柯里化开始')
+                function logThree(one, two, three) {
+                    log(`${one}${two}${three}`)
+                }
+
+                let lg = currying(logThree)
+                let time = 1;
+                while(typeof lg === 'function') {
+                    lg = lg(++time)
+                }
+
+                var a = [4,5,6]
+                logThree(a)
+                logThree(...a)
+            })
+        </script>
+    </head>
+    <body>
+        
+    </body>
+</html>
