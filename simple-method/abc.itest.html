@@ -2,8 +2,10 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>手动实现promise</title>
-        <script src="./src/index.js" ></script>
+        <title>测试apply, bind, call 的实现</title>
+        <script src="./apply/index.js" ></script>
+        <script src="./bind/index.js" ></script>
+        <script src="./call/index.js" ></script>
         <script src="../index.js" ></script>
         <style>
             html, body { height: 100%; overflow: auto; }
@@ -11,7 +13,54 @@
         <script>
             doc(() => {
                 // 写测试代码 可以使用log打印
-                log('测试开始')
+                log('先写个实例:准备')
+
+                function Person(name) {
+                    this.name = name
+                }
+
+                Person.prototype.say = function(other) {
+                    log(`${this.name}_${other}`)
+                }
+
+                function abc(...str) {
+                    log(str)
+                    if('say' in this) {
+                        this['say'](str);
+                    }
+                }
+                log('执行-原生call')
+                abc.call(this, 'this:window', 'other')
+                abc.call(new Person('call_zlb'), 'this:new Person', 'other')
+
+                // Function.prototype.call(this, 1111)
+                // Function.prototype.myCall(this, 1111)
+
+                log('执行-原生apply')
+                abc.apply(this, ['this:window', 'other'])
+                abc.apply(new Person('call_zlb'), ['this:new Person', 'other'])
+
+                log('执行-原生bind')
+                var a = abc.bind(this, 'this:window', 'other')
+                var a_p = abc.bind(new Person('call_zlb'), 'this:new Person', 'other')
+                a()
+                a_p()
+                log("")
+                log('执行-自己的方法------------------------------------------------------------------------------------------')
+                
+                log('执行-myCall')
+                abc.myCall(this, 'this:window', 'other')
+                abc.myCall(new Person('call_zlb'), 'this:new Person', 'other')
+
+                log('执行-myApply')
+                abc.myApply(this, ['this:window', 'other'])
+                abc.myApply(new Person('call_zlb'), ['this:new Person', 'other'])
+
+                log('执行-myBind')
+                var a = abc.myBind(this, 'this:window', 'other')
+                var a_p = abc.myBind(new Person('call_zlb'), 'this:new Person', 'other')
+                a()
+                a_p()
             })
         </script>
     </head>
