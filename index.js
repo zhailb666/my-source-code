@@ -1,11 +1,17 @@
-window.log = (str) => {
+window.log = (...str) => {
    var t = document.createElement('div');
     t.style.borderBottom = '1px solid #efefef'
     t.style.height = '26px'
     t.style.lineHeight = '26px'
     t.innerText = str
     document.body.appendChild(t)
+    return t;
 }
+
+window.log.red = (...str) => {
+    var t =  log(...str)
+    t.style.color = 'red'
+ }
 
 
 window.onloadfn = [];
