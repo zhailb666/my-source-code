@@ -25,6 +25,6 @@ my-source-code
 ![防抖(debounce)-节流图(throttle)](https://asman-img.oss-cn-hangzhou.aliyuncs.com/debounce_throu_d4f9df35a3aa43158937405d8650c464.png)
 
 - 循环效率问题
-![防抖(debounce)-节流图(throttle)](https://asman-img.oss-cn-hangzhou.aliyuncs.com/uniqu_b230563ee77b4912ac7464421aa74137.png)
+![循环效率问题](https://asman-img.oss-cn-hangzhou.aliyuncs.com/uniqu_b230563ee77b4912ac7464421aa74137.png)
 
 
