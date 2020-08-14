@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>测试apply, bind, call 的实现</title>
+        <script src="./filter/index.js" ></script>
+        <script src="./map/index.js" ></script>
+        <script src="../index.js" ></script>
+        <style>
+            html, body { height: 100%; overflow: auto; }
+        </style>
+        <script>
+            doc(() => {
+                // 写测试代码 可以使用log打印
+
+                log('测试手写的filter方法和map方法')
+                const a = [1,2,3,4,5,6]
+                const v1 = a.reduceToFilter((ele, i) => {
+                    return ele > 3
+                })
+
+                log('reduceToFilter', v1)
+
+                const v2 = a.reduceToMap((ele, i) => {
+                    return ele * 3
+                })
+
+                log('reduceToMap', v2)
+            })
+        </script>
+    </head>
+    <body>
+        
+    </body>
+</html>

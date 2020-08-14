@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>数组去重</title>
+        <script src="../../index.js" ></script>
+        <script src="./index.js" ></script>
+        <style>
+            html, body { height: 100%; overflow: auto; }
+        </style>
+        <script>
+            doc(() => {
+                // 写测试代码 可以使用log打印
+                const arr = new Array(20000000).fill(111)
+
+                const t1 = new Date().getTime();
+
+                log('测试数组去重开始，数据量为-->', arr.length)
+                const v1 = uniqueReduce(arr)
+                const t2 = new Date().getTime();
+                log(v1, 'uniqueReduce', `用时${t2 - t1}ms`)
+
+                const v2 = uniqueWhile(arr.concat([]))
+                const t3 = new Date().getTime();
+                log(v2,'uniqueWhile', `用时${t3 - t2}ms`)
+
+                const v3 = uniqueSet(arr)
+                const t4 = new Date().getTime();
+                log(v3, 'uniqueSet', `用时${t4 - t3}ms`)
+
+                const v4 = uniqueFilter(arr)
+                const t5 = new Date().getTime();
+                log(v4, 'uniqueFilter', `用时${t5 - t4}ms`)
+
+                const v5 = uniqueForEach(arr)
+                const t6 = new Date().getTime();
+                log(v5, 'uniqueForEach', `用时${t6 - t5}ms`)
+
+                const v6 = uniqueFor(arr)
+                const t7 = new Date().getTime();
+                log(v6, 'uniqueFor', `用时${t6 - t5}ms`)
+            })
+        </script>
+    </head>
+    <body>
+        
+    </body>
+</html>
