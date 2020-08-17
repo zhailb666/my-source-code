@@ -8,6 +8,14 @@ window.log = (...str) => {
     return t;
 }
 
+
+window.addScript = (url) => {
+    let scriptEle = document.createElement('script');
+       scriptEle.src = `${url}`;
+       
+    document.body.appendChild(scriptEle);
+ }
+
 window.log.red = (...str) => {
     var t =  log(...str)
     t.style.color = 'red'

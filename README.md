@@ -16,6 +16,9 @@ my-source-code
 |    |  └index.js
 
 ```
+- webpack4运行说明
+  - cd webpack4/package  执行 npm link;
+  - 执行webpack4命令即可;
 
 #### 每天向着目标努力一点点 
 ![架构图](https://user-gold-cdn.xitu.io/2019/4/26/16a55401a0516a6d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
