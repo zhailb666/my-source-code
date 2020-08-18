@@ -25,6 +25,8 @@
 		"./src/index.js" : (function(module, exports, __webpack_require__){
 			eval(`const str = __webpack_require__("./src/components/s.js");
 
+__webpack_require__("./src/style.less");
+
 log("webpack原理分析开始");
 log("引用执行结果：" + str);`);
 		}),
@@ -37,6 +39,12 @@ module.exports = 's' + a;`);
 		
 		"./src/components/a/a.js" : (function(module, exports, __webpack_require__){
 			eval(`module.exports = 'a';`);
+		}),
+		
+		"./src/style.less" : (function(module, exports, __webpack_require__){
+			eval(`let style = document.createElement('style');
+style.innerHTML = "body {\\n  background-color: rebeccapurple;\\n}\\n";
+document.head.appendChild(style);`);
 		}),
 		
 });

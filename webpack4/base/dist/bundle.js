@@ -115,7 +115,18 @@ eval("let a = __webpack_require__(/*! ./a/a */ \"./src/components/a/a.js\");\nmo
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const str = __webpack_require__(/*! ./components/s */ \"./src/components/s.js\")\n\nlog(`webpack原理分析开始`);\nlog(`引用执行结果： ${str}`);\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("const str = __webpack_require__(/*! ./components/s */ \"./src/components/s.js\")\n__webpack_require__(/*! ./style.less */ \"./src/style.less\")\n\nlog(\"webpack原理分析开始\");\nlog(\"引用执行结果：\"+ str);\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/style.less":
+/*!************************!*\
+  !*** ./src/style.less ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("\n        let style = document.createElement('style');\n        style.innerHTML = \"body {\\\\n  background-color: rebeccapurple;\\\\n}\\\\n\"\n        document.head.appendChild(style)\n    \n\n//# sourceURL=webpack:///./src/style.less?");
 
 /***/ })
 
