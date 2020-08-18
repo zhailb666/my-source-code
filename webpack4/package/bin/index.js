@@ -7,5 +7,5 @@ const fs = require('fs');
 const Compiler = require('../lib/Compiler');
 
 
-const configPath = path.join(process.cwd(), 'webpack.config.js');
+const configPath = path.join(process.cwd(), 'webpack4.config.js');
 new Compiler(require(configPath))

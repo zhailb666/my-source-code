@@ -8,7 +8,6 @@ const traverse = require('@babel/traverse').default;
 const t = require('@babel/types');
 const ejs = require('ejs')
 
-// console.log(parser, 'parser')
 class Compiler {
     constructor(config) {
         console.log(config, 'config')
@@ -24,8 +23,30 @@ class Compiler {
         this.run()
     }
 
+    // loader实现
+    loaderFilter(modulePath, source) {
+        const rules = this.config.module && this.config.module.rules
+        if(!rules || !rules.length) return source;
+        let index = 0
+        while(index < rules.length) {
+            const { test, use} = rules[index]
+            if(test.test(modulePath)) {
+                let useIndex = use.length -1
+                while(useIndex >= 0) {
+                    const loader = require(use[useIndex])
+                    source = loader(source)
+                    useIndex--
+                }
+            }
+            index++
+        }
+
+        return source;
+    }
+
     getSource(modulePath) {
         let content = fs.readFileSync(modulePath, 'utf-8');
+        content = this.loaderFilter(modulePath, content); {/*? 出现一个error*/}
         return content;
     }
 
@@ -59,8 +80,7 @@ class Compiler {
         if(isEntry) {
             this.entryId = moduleName;
         }
-        console.log(moduleName, '----name')
-        let source = this.getSource(modulePath);
+        let source = this.getSource(modulePath); // 这样所有文件都走这个方法；
         const dirnamePath = path.dirname(moduleName);
         const { sourceCode, dependencies } = this.parse(source, dirnamePath);
 
@@ -88,9 +108,7 @@ class Compiler {
     }
 }
 
-
 module.exports = Compiler;
-
 
 /**
  *
