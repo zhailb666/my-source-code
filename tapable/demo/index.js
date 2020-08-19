@@ -122,31 +122,43 @@ function syncLoopHook() {
 }
 
 
-function asyncParallelHookOne() {
+function asyncParallelHookTapAsync() {
     // AsyncParallelHook 钩子：tapAsync/callAsync 的使用
     const { AsyncParallelHook } = tapable;
 
+    log.red('异步并行执行测试');
+    log.red('AsyncParallelHook 为异步并行执行，通过 tapAsync 注册的事件，通过 callAsync 触发');
+    log.red('通过 tapPromise 注册的事件，通过 promise 触发（返回值可以调用 then 方法）');
     // 创建实例
     let asyncParallelHook = new AsyncParallelHook(["name", "age"]);
 
     // 注册事件
+    log.red()
+    log.red("开始测试asyncParallelHookTapAsync");
     log("time");
+    asyncParallelHook.tapAsync("0", (name, age, done) => {
+        setTimeout(() => {
+            log("0", name, age, new Date());
+            done();
+        }, 3500);
+    });
+
     asyncParallelHook.tapAsync("1", (name, age, done) => {
-        settimeout(() => {
+        setTimeout(() => {
             log("1", name, age, new Date());
             done();
         }, 1000);
     });
 
     asyncParallelHook.tapAsync("2", (name, age, done) => {
-        settimeout(() => {
+        setTimeout(() => {
             log("2", name, age, new Date());
             done();
         }, 2000);
     });
 
     asyncParallelHook.tapAsync("3", (name, age, done) => {
-        settimeout(() => {
+        setTimeout(() => {
             log("3", name, age, new Date());
             done();
             log("time");
@@ -156,10 +168,13 @@ function asyncParallelHookOne() {
     // 触发事件，让监听函数执行
     asyncParallelHook.callAsync("panda", 18, () => {
         log("complete");
+        log('')
+        log.red('开始测试 asyncParallelHookTapPromise')
+        asyncParallelHookTapPromise()
     });
 }
 
-function asyncParallelHookTwo() {
+function asyncParallelHookTapPromise() {
     // AsyncParallelHook 钩子：tapPromise/promise 的使用
     const { AsyncParallelHook } = tapable;
 
@@ -167,11 +182,11 @@ function asyncParallelHookTwo() {
     let asyncParallelHook = new AsyncParallelHook(["name", "age"]);
 
     // 注册事件
-    console.log("time");
+    log("time");
     asyncParallelHook.tapPromise("1", (name, age) => {
         return new Promise((resolve, reject) => {
-            settimeout(() => {
-                console.log("1", name, age, new Date());
+            setTimeout(() => {
+                log("1", name, age, new Date());
                 resolve("1");
             }, 1000);
         });
@@ -179,8 +194,8 @@ function asyncParallelHookTwo() {
 
     asyncParallelHook.tapPromise("2", (name, age) => {
         return new Promise((resolve, reject) => {
-            settimeout(() => {
-                console.log("2", name, age, new Date());
+            setTimeout(() => {
+                log("2", name, age, new Date());
                 resolve("2");
             }, 2000);
         });
@@ -188,70 +203,76 @@ function asyncParallelHookTwo() {
 
     asyncParallelHook.tapPromise("3", (name, age) => {
         return new Promise((resolve, reject) => {
-            settimeout(() => {
-                console.log("3", name, age, new Date());
+            setTimeout(() => {
+                log("3", name, age, new Date());
                 resolve("3");
-                console.log("time");
+                log("time");
             }, 3000);
         });
     });
 
     // 触发事件，让监听函数执行
     asyncParallelHook.promise("panda", 18).then(ret => {
-        console.log(ret);
+        log(`tapPromise 执行完成: ${ret}`);
     });
 }
 
-function asyncSeriesHookOne() {
+function asyncSeriesHookTapAsync() {
+    log.red('异步串行执行测试');
+    log.red('asyncSeriesHook 为异步并行执行，通过 tapAsync 注册的事件，通过 callAsync 触发');
+    log.red('通过 tapPromise 注册的事件，通过 promise 触发（返回值可以调用 then 方法）');
    // AsyncSeriesHook 钩子：tapAsync/callAsync 的使用
     const { AsyncSeriesHook } = tapable;
 
     // 创建实例
     let asyncSeriesHook = new AsyncSeriesHook(["name", "age"]);
-
+    log()
+    log.red('开始测试 asyncSeriesHookTapAsync')
     // 注册事件
-    console.time("time");
+    log("time");
     asyncSeriesHook.tapAsync("1", (name, age, next) => {
-        settimeout(() => {
-            console.log("1", name, age, new Date());
+        setTimeout(() => {
+            log("1", name, age, new Date());
             next();
         }, 1000);
     });
 
     asyncSeriesHook.tapAsync("2", (name, age, next) => {
-        settimeout(() => {
-            console.log("2", name, age, new Date());
+        setTimeout(() => {
+            log("2", name, age, new Date());
             next();
         }, 2000);
     });
 
     asyncSeriesHook.tapAsync("3", (name, age, next) => {
-        settimeout(() => {
-            console.log("3", name, age, new Date());
+        setTimeout(() => {
+            log("3", name, age, new Date());
             next();
-            console.timeEnd("time");
+            log.red("time 哈哈_我是tapAsync3中的, 验证了 next为下个要执行的函数");
         }, 3000);
     });
 
     // 触发事件，让监听函数执行
     asyncSeriesHook.callAsync("panda", 18, () => {
-        console.log("complete");
+        log("complete");
+        log()
+        log.red('开始测试 asyncSeriesHookTapPromise')
+        asyncSeriesHookTapPromise()
     });
 }
 
-function asyncSeriesHookTwo() {
+function asyncSeriesHookTapPromise() {
     // AsyncSeriesHook 钩子：tapPromise/promise 的使用
     const { AsyncSeriesHook } = tapable;
-
     // 创建实例
     let asyncSeriesHook = new AsyncSeriesHook(["name", "age"]);
 
     // 注册事件
-    console.log("time");
+    log("time");
     asyncSeriesHook.tapPromise("1", (name, age) => {
         return new Promise((resolve, reject) => {
-            settimeout(() => {
-                console.log("1", name, age, new Date());
+            setTimeout(() => {
+                log("1", name, age, new Date());
                 resolve("1");
             }, 1000);
         });
@@ -259,25 +280,25 @@ function asyncSeriesHookTwo() {
 
     asyncSeriesHook.tapPromise("2", (name, age) => {
         return new Promise((resolve, reject) => {
-            settimeout(() => {
-                console.log("2", name, age, new Date());
+            setTimeout(() => {
+                log("2", name, age, new Date());
                 resolve("2");
             }, 2000);
         });
     });
 
-    asyncParallelHook.tapPromise("3", (name, age) => {
+    asyncSeriesHook.tapPromise("3", (name, age) => {
         return new Promise((resolve, reject) => {
-            settimeout(() => {
-                console.log("3", name, age, new Date());
+            setTimeout(() => {
+                log("3", name, age, new Date());
                 resolve("3");
-                console.log("time");
+                log("time");
             }, 3000);
         });
     });
 
     // 触发事件，让监听函数执行
     asyncSeriesHook.promise("panda", 18).then(ret => {
-        console.log(ret);
+        log(`tapPromise回调完成: --${ret}`);
     });
 }
