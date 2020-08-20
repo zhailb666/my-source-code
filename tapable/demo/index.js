@@ -56,6 +56,141 @@ function syncBailHook () {
     syncBailHook.call("panda", 18);
 }
 
+function asyncParallelBailHook () {
+    log.red('AsyncParallelBailHook 和 AsyncSeriesBailHook 分别为异步 “并行” 和 “串行” 执行的 “钩子”')
+    log.red('返回值不为 undefined，即有返回值，则提前执行最后的回调')
+
+    // SyncBailHook 钩子的使用
+    const { AsyncParallelBailHook } = tapable;
+
+    // 创建实例
+    let asyncParallelBailHook = new AsyncParallelBailHook(["name", "age"]);
+    log()
+    log.red('开始测试 asyncParallelBailHook,')
+    // 注册事件
+    log("time");
+    asyncParallelBailHook.tapAsync("1", (name, age, next) => {
+        setTimeout(() => {
+            log("1", name, age, new Date());
+            next();
+        }, 1000);
+    });
+
+    asyncParallelBailHook.tapAsync("2", (name, age, next) => {
+        setTimeout(() => {
+            log("2", name, age, new Date());
+            next(2222);
+        }, 2000);
+    });
+
+    asyncParallelBailHook.tapAsync("3", (name, age, next) => {
+        setTimeout(() => {
+            log("3", name, age, new Date());
+            next();
+            log("time 哈哈_我是tapAsync3中的, 验证了 next为下个要执行的函数");
+        }, 3000);
+    });
+
+    // 触发事件，让监听函数执行
+    asyncParallelBailHook.callAsync("panda", 18, (v) => {
+        log("complete");
+        log.red(`最后的回调结果：${v}`)
+        // log.red('开始测试 asyncParallelBailHook')
+        // asyncSeriesHookTapPromise()
+        log.red("-----加Bail的用处是：可以提前跳到最后回调中");
+    });
+}
+
+function asyncSeriesBailHook () {
+    log.red('AsyncParallelBailHook 和 AsyncSeriesBailHook 分别为异步 “并行” 和 “串行” 执行的 “钩子”')
+    log.red('返回值不为 undefined，即有返回值，则立即停止向下执行其他事件处理函数')
+
+    // SyncBailHook 钩子的使用
+    const { AsyncSeriesBailHook } = tapable;
+
+    // 创建实例
+    let asyncSeriesBailHook = new AsyncSeriesBailHook(["name", "age"]);
+    log()
+    log.red('开始测试 asyncSeriesBailHook, 异步“串行” 执行的 “钩子”')
+    // 注册事件
+    log("time");
+    asyncSeriesBailHook.tapAsync("1", (name, age, next) => {
+        setTimeout(() => {
+            log("1", name, age, new Date());
+            next();
+        }, 1000);
+    });
+
+    asyncSeriesBailHook.tapAsync("2", (name, age, next) => {
+        setTimeout(() => {
+            log("2", name, age, new Date());
+            next(2222);
+        }, 2000);
+    });
+
+    asyncSeriesBailHook.tapAsync("3", (name, age, next) => {
+        setTimeout(() => {
+            log("3", name, age, new Date());
+            next();
+            log("time 哈哈_我是tapAsync3中的, 验证了 next为下个要执行的函数");
+        }, 3000);
+    });
+
+    // 触发事件，让监听函数执行
+    asyncSeriesBailHook.callAsync("panda", 18, (v) => {
+        log("complete");
+        log.red(`最后的回调结果：${v}`)
+        // log.red('开始测试 asyncParallelBailHook')
+        // asyncSeriesHookTapPromise()
+        log.red("-----加Bail的用处是：可以提前跳到最后回调中");
+    });
+}
+
+function asyncSeriesWaterfallHook () {
+    log.red('开始测试asyncSeriesWaterfallHook');
+    log.red('第一个参数的值不为 undefined，即有返回值，则立即停止向下执行其他事件处理函数')
+    log.red('第二个参数是传给下个回调的，且next函数只有二个参数，多传值是没有效果的, 如果没有传参则取上次有参数的值')
+    // SyncBailHook 钩子的使用
+    const { AsyncSeriesWaterfallHook } = tapable;
+
+    // 创建实例
+    let asyncSeriesWaterfallHook = new AsyncSeriesWaterfallHook(["name", "age"]);
+    log()
+    log.red('开始测试 asyncSeriesWaterfallHook')
+    // 注册事件
+    log("time");
+    asyncSeriesWaterfallHook.tapAsync("1", (name, age, next) => {
+        setTimeout(() => {
+            log("1", name, age, new Date());
+            // next(null, '来自name1', '来自age1', 'sdfsdfs');
+            next(null, '来自fn1');
+            // return 12
+        }, 1000);
+    });
+
+    asyncSeriesWaterfallHook.tapAsync("2", (name, age, next) => {
+        setTimeout(() => {
+            log("2", name, age, new Date());
+            next(null, '来自fn2');
+        }, 2000);
+    });
+
+    asyncSeriesWaterfallHook.tapAsync("3", (name, age, next) => {
+        setTimeout(() => {
+            log("3", name, age, new Date());
+            log.red('我即将返回了，后面还有的话也不执行了');
+            next('我返回了');
+            log("time 哈哈_我是多余的，的tapAsync3中的, 验证了 next为下个要执行的函数");
+        }, 3000);
+    });
+
+    // 触发事件，让监听函数执行
+    asyncSeriesWaterfallHook.callAsync("panda", 18, (v) => {
+        log("complete");
+        log.red(`最后的返回的结果：${v}`)
+    });
+}
+
 function syncWaterfallHook () {
     log.red('SyncWaterfallHook 为串行同步执行，上一个事件处理函数的返回值作为参数传递给下一个事件处理函数，依次类推')
     log.red('正因如此，只有第一个事件处理函数的参数可以通过 call 传递，而 call 的返回值为最后一个事件处理函数的返回值。')
