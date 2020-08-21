@@ -21,7 +21,7 @@ class SomePluginsLifeCycle {
                 module => {
                     // console.log(module, 'module')
                     const { parser } = module;
-                    console.log(parser, 'parser')
+                    // console.log(parser, 'parser')
                     console.log('buildModule-SourceMapDevToolModuleOptionsPlugin ----------XXXXXXXXXXX-----XXXXXXX');
                     module.useSourceMap = true;
                 }

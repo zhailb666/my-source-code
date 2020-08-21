@@ -8,8 +8,14 @@ module.exports ={
     mode: 'development',
     entry: "./src/index.js",
     output: {
-        filename: 'bundle.js',
+        filename: 'bundle.[hash].js',
         path: path.resolve(__dirname, 'dist')
+    },
+    devServer: {
+      hot: true,
+      port: 3000,
+      open: true,
+      contentBase: './dist'
     },
     module: {
         rules: [
