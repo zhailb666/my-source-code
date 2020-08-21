@@ -8,4 +8,6 @@ const Compiler = require('../lib/Compiler');
 
 
 const configPath = path.join(process.cwd(), 'webpack4.config.js');
-new Compiler(require(configPath))
+var compiler = new Compiler(require(configPath))
+compiler.hooks.entryOption.call()
+compiler.run()

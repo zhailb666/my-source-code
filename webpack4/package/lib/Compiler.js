@@ -6,6 +6,7 @@ const generator = require('@babel/generator').default;
 const babylon = require('babylon');
 const traverse = require('@babel/traverse').default;
 const t = require('@babel/types');
+const { SyncHook } =  require('tapable');
 const ejs = require('ejs')
 
 class Compiler {
@@ -20,7 +21,23 @@ class Compiler {
         this.entry = config.entry; // 入口路径
         //工作路径
         this.root = process.cwd();
-        this.run()
+        this.hooks = {
+            entryOption: new SyncHook(),
+            compile: new SyncHook(),
+            afterCompile: new SyncHook(),
+            afterPulgins: new SyncHook(),
+            run: new SyncHook(),
+            emit: new SyncHook(),
+            done: new SyncHook(),
+        }
+
+        let plugins = this.config.plugins
+        if(Array.from(plugins)) {
+            plugins.forEach(plugin => {
+                plugin.apply(this)
+            })
+        }
+        this.hooks.afterPulgins.call();
     }
 
     // loader实现
@@ -102,9 +119,13 @@ class Compiler {
     }
 
     run() {
+        this.hooks.run.call()
+        this.hooks.compile.call()
         this.buildModule(path.resolve(this.root, this.entry), true);
-
+        this.hooks.afterCompile.call()
         this.emitFile();
+        this.hooks.emit.call()
+        this.hooks.done.call();
     }
 }
 
