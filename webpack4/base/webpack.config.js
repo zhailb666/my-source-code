@@ -1,4 +1,9 @@
 let path = require('path');
+const POnePlugins = require('./plugins/POne');
+const PTwoPlugins = require('./plugins/PTwo');
+const SomePluginsLifeCycle = require('./plugins/SomePluginsLifeCycle');
+const ClearLog = require('./plugins/ClearLog');
+
 module.exports ={
     mode: 'development',
     entry: "./src/index.js",
@@ -17,4 +22,10 @@ module.exports ={
           },
         ],
     },
+    plugins: [
+      new POnePlugins(),
+      new PTwoPlugins(),
+      new SomePluginsLifeCycle(),
+      new ClearLog()
+    ]
 }
