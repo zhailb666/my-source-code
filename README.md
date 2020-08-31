@@ -1,26 +1,29 @@
-## 手撕源码实现
-
-
-### 前端知识自检手册
-
+### 前端知识体系
+[前端知识体系](https://juejin.im/post/6860776234469720072)
 
 ### 目录结构
 ```
 
 my-source-code
-├─README.md
-├─simple-method
-├─promise
-|    ├─index.test.html
-|    ├─src
-|    |  └index.js
+├─array-method  //数组常用方法实现
+├─data-structure //数据结构
+├─deep-clone //深copy
+├─inherits //js继承
+├─jsonp //jsonp实现
+├─promise //模拟primise实现
+├─pubsub //简单的订阅发布
+├─react16 //v react16 研究
+├─simple-method // 常用的方法实现
+├─tapable // tapable勾子使用
+├─webpack4 // webpack4简易版实现
+
 
 ```
 - webpack4运行说明
   - cd webpack4/package  执行 npm link;
   - 执行webpack4命令即可;
 
-#### 每天向着目标努力一点点 
+#### 每天努力一点点 
 ![架构图](https://user-gold-cdn.xitu.io/2019/4/26/16a55401a0516a6d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
 
 ### 图片汇集地(源码选集)
