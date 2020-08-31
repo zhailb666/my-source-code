@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>测试jsonp</title>
+        <script src="../../../index.js" ></script>
+        <script src="../../../pubsub/index.js" ></script>
+        <script src="../lib/history.js" ></script>
+        <style>
+            html, body { height: 100%; overflow: auto; }
+        </style>
+        <script>
+            doc(() => {
+                window.onpopstate = (e) => {
+                    log('监测到history改变了')
+                }
+                log.red('1、仅仅hash改变，浏览器是不会重新渲染的');
+                log.red('2、pushState与replaceState是不会触发onhashchange事件的');
+                log.red('3、重写history.pushState， replaceState方法首先先缓存之前的方法'); 
+                // history.replaceState('')
+                document.getElementById('btn1').onclick = () => {
+                    log.red('#改变location')
+                    const state = { 'page_id': 1, 'user_id': 5 }
+                    const title = Math.random() * 1000
+                    history.go()
+                }
+
+                document.getElementById('pushState').onclick = () => {
+                    log.red('#pushState')
+                    const state = { 'page_id': 1, 'user_id': 5 }
+                    const title = Math.random() * 1000
+                    const url = `${title}history.html`
+                    history.pushState(state, title, url)
+                }
+
+                document.getElementById('replaceState').onclick = () => {
+                    log.red('#replaceState')
+                    const state = { 'page_id': 1, 'user_id': 5 }
+                    const title = Math.random() * 1000
+                    const url = `${title}history.html`
+                    history.replaceState(state, title, url)
+                }
+            })
+        </script>
+    </head>
+    <body>
+        <button id='btn1'>hash</button>
+        <button id='pushState'>pushState</button>
+        <button id='replaceState'>replaceState</button>
+    </body>
+</html>
+<!-- https://www.jianshu.com/p/273e1c9904d2 -->
+<!-- https://www.jianshu.com/p/3fcae6a4968f?open_source=weibo_search -->

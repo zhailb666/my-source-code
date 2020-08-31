@@ -33,6 +33,7 @@ class SomePluginsLifeCycle {
             done();
         })
 
+        // 这个地方执行的是loader函数
         compiler.hooks.afterCompile.tapAsync('afterCompile', function(compilation, next) {
             console.log('编译 build 过程结束')
             next()

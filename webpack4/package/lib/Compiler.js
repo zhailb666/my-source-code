@@ -28,6 +28,7 @@ class Compiler {
             afterPulgins: new SyncHook(),
             run: new SyncHook(),
             emit: new SyncHook(),
+            afteremit: new SyncHook(),
             done: new SyncHook(),
         }
 
