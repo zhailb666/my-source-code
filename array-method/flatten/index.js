@@ -1,3 +1,4 @@
+// [].flat(Infinity) 等同于下面的方法实现；
 function flattenFor(arr) {
     let bc = []
     for(let i = 0; i< arr.length; i++) {

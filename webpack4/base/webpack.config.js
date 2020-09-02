@@ -35,3 +35,18 @@ module.exports ={
       new ClearLog()
     ]
 }
+
+/**
+ * 
+常用loader
+样式：style-loader、css-loader、less-loader、sass-loader等
+文件：raw-loader、file-loader 、url-loader等
+编译：babel-loader、coffee-loader 、ts-loader等
+校验测试：mocha-loader、jshint-loader 、eslint-loader等
+
+plugin
+ProvidePlugin：自动加载模块，代替require和import
+html-webpack-plugin可以根据模板自动生成html代码，并自动引用css和js文件
+extract-text-webpack-plugin 将js文件中引用的样式单独抽离成css文件
+webpack.IgnorePlugin
+ */

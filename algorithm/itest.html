@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>排序性能对比</title>
+        <script src="../index.js" ></script>
+        <script src="./bubbleSort/index.js" ></script>
+        <script src="./quickSort/index.js" ></script>
+        <style>
+            html, body { height: 100%; overflow: auto; }
+        </style>
+        <script>
+            doc(() => {
+                 // 写测试代码 可以使用log打印
+                // let arr = [9,2,35,5,6,78,67]
+                const arr = new Array(50000).fill(111);
+
+                const t1 = new Date().getTime();
+
+                log('测试冒泡排序开始，数据量为-->', arr.length)
+                bubbleSort(arr)
+                const t2 = new Date().getTime();
+                log(arr, 'bubbleSort', `用时${t2 - t1}ms`)
+
+        
+                quickSort(arr)
+                const t3 = new Date().getTime();
+                log(arr, 'quickSort', `用时${t3 - t1}ms`)
+            })
+        </script>
+    </head>
+    <body>
+        
+    </body>
+</html>

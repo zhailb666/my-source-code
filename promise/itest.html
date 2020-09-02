@@ -14,7 +14,8 @@
                     resolve(1)
                 }).then((v) => {
                     log(`MyPromise000__${v}`)
-                }).then((t) => {
+                })
+                .then((t) => {
                     log(`MyPromise1111__${t}`)
                     throw new Error()
                 }).then(()=> {

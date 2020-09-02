@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>手动实现promise</title>
+        <script src="../index.js" ></script>
+        <script src="./syn-index.js" ></script>
+        <style>
+            html, body { height: 100%; overflow: auto; }
+        </style>
+        <script>
+            doc(() => {
+                // new SynPromise((resolve, reject) => {
+                //     resolve(1)
+                // }).then((v) => {
+                //     log(`MyPromise000__${v}`)
+                // })
+                // .then((t) => {
+                //     log(`MyPromise1111__${t}`)
+                //     throw new Error()
+                // }).then(()=> {
+                //     log(`MyPromise222__success${er}`)
+                // }, (er) => {
+                //     log(`MyPromise222__error${er}`)
+                // })
+
+
+                // const p1 = SynPromise.reject('呜呜')
+                // const p2 = SynPromise.resolve('success')
+                // const p3 = SynPromise.resolve(SynPromise.resolve(333))
+                // p1.then((v)=> {
+                //     log(`success${v}`)
+                // },(v)=> {
+                //     log(`error${v}`)
+                // })
+                // p2.then((v)=> {
+                //     log(`success${v}`)
+                // },(v)=> {
+                //     log(`error${v}`)
+                // })
+                // p3.then((v)=> {
+                //     log(`success${v}`)
+                // },(v)=> {
+                //     log(`error${v}`)
+                // })
+
+
+                // SynPromise.reject('catch').catch((v) => {
+                //     log(`${v}`)
+                // })
+
+                SynPromise.reject('catch').finally(() => {
+                    log('finally')
+                })
+            })
+        </script>
+    </head>
+    <body>
+        
+    </body>
+</html>
