@@ -7,15 +7,29 @@
 </head>
 
 <body>
-  <h1>
-    研究的结论：
-    1、正常的script标签在下载和执行的时候会阻碍后面DOM树的渲染；
-    2、defer异步加载不阻塞DOM树的渲染，多个defer script标签下载后顺序执行，并且在 DOMContentLoaded 之前执行；
-    3、async异步加载不阻塞DOM树的渲染，多个async script标签下载后立即执行(是无需的，谁先下载完谁先执行)与DOMContentLoaded无关；
-    4、load永远在DOMContentLoaded后执行；
-    // TODO
-    给文件设置缓存
-  </h1>
+  <h3>
+    研究的结论 F12查看：<br/>
+    1、正常的script标签在下载和执行的时候会阻碍后面DOM树的渲染<br/>
+    2、defer异步加载不阻塞DOM树的渲染，多个defer script标签下载后顺序执行，并且在 DOMContentLoaded 之前执行；<br/>
+    3、async异步加载不阻塞DOM树的渲染，多个async script标签下载后立即执行(是无需的，谁先下载完谁先执行)与DOMContentLoaded无关；<br/>
+    4、load永远在DOMContentLoaded后执行；<br/>
+    // TODO<br/>
+    给文件设置缓存<br/>
+  </h3>
+  <div>
+    <h3>使用场景</h3>
+    <h3 style="margin:0">defer</h3>
+    如果你的脚本代码依赖于页面中的DOM元素（文档是否解析完毕），或者被其他脚本文件依赖。<br/>
+    例：<br/>
+    评论框<br/>
+    代码语法高亮<br/>
+    polyfill.js<br/>
+    <br/>
+    <h3 style="margin:0">async</h3>
+    如果你的脚本并不关心页面中的DOM元素（文档是否解析完毕），并且也不会产生其他脚本需要的数据。<br/>
+    例：<br/>
+    百度统计<br/>
+  </div>
   <script type="text/javascript" src="/script2.js"></script>
   <script async type="text/javascript" src="/script2.js"></script>
   <script defer type="text/javascript" src="/script4.js"></script>
