@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>example</title>
+</head>
+
+<body>
+  <h1>
+    研究的结论：
+    1、正常的script标签在下载和执行的时候会阻碍后面DOM树的渲染；
+    2、defer异步加载不阻塞DOM树的渲染，多个defer script标签下载后顺序执行，并且在 DOMContentLoaded 之前执行；
+    3、async异步加载不阻塞DOM树的渲染，多个async script标签下载后立即执行(是无需的，谁先下载完谁先执行)与DOMContentLoaded无关；
+    4、load永远在DOMContentLoaded后执行；
+    // TODO
+    给文件设置缓存
+  </h1>
+  <script type="text/javascript" src="/script2.js"></script>
+  <script async type="text/javascript" src="/script2.js"></script>
+  <script defer type="text/javascript" src="/script4.js"></script>
+  <script defer type="text/javascript" src="/script1.js"></script>
+  <script async type="text/javascript" src="/script3.js"></script>
+  <!-- <script async type="text/javascript" src="/script3.js"></script> -->
+  <p>after script tags</p>
+  <script type="text/javascript">
+    console.log('-----body---script')
+    window.addEventListener('DOMContentLoaded', function () {
+      console.log('DOMContentLoaded')
+    })
+    window.addEventListener('load', function () {
+      console.log('load')
+    })
+  </script>
+</body>
+
+</html>

@@ -4,6 +4,9 @@
     const RESOLVED = 'onresolved'
     
     class MyPromise {
+        constructor(name) {
+            this.name = name
+        }
         static resolve = (value) => {
             return new MyPromise((resolve, reject) => {
                 if(value instanceof MyPromise) {

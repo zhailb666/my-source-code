@@ -1,0 +1,20 @@
+body{
+    display: flex; 
+    flex-flow: column;
+    min-height: 100vh; /* 容器外层最小高度设置*/
+    overflow:auto;
+}
+
+h1 { 
+    font-size: 60px; 
+    text-align: center;
+}
+
+p {
+    font-size: 24px; 
+    text-align: center;
+}
+
+.main {
+    flex:1; 
+}
