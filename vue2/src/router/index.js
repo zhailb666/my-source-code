@@ -20,7 +20,7 @@ export default new Router({
     },
     {
       path: '/lifeCycle',
-      name: 'PartialRegistration',
+      name: 'lifeCycle',
       component: LifeCycle
     }
   ]
