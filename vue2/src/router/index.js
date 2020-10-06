@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/pages/HelloWorld'
 import PartialRegistration from '@/pages/PartialRegistration'
 import LifeCycle from '@/pages/LifeCycle'
+import Base from '@/pages/base'
 
 Vue.use(Router)
 
@@ -22,6 +23,11 @@ export default new Router({
       path: '/lifeCycle',
       name: 'lifeCycle',
       component: LifeCycle
+    },
+    {
+      path: '/base',
+      name: 'base',
+      component: Base
     }
   ]
 })
