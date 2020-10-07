@@ -4,6 +4,7 @@ import HelloWorld from '@/pages/HelloWorld'
 import PartialRegistration from '@/pages/PartialRegistration'
 import LifeCycle from '@/pages/LifeCycle'
 import Base from '@/pages/base'
+import ReuseCombination from '@/pages/reuseCombination'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/base',
       name: 'base',
       component: Base
+    },
+    {
+      path: '/reuse',
+      name: 'reuse',
+      component: ReuseCombination
     }
   ]
 })
