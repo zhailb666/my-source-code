@@ -1,12 +1,17 @@
+/*
+ * @Author: your name
+ * @Date: 2020-08-25 14:08:13
+ * @Description: file content
+ */
 import React from 'react';
 
 class Lifecycle extends React.Component {
     static getDerivedStateFromProps(props, state) {
-        console.log('getDerivedStateFromProps')
-        return {a: 1}
+        console.log('getDerivedStateFromProps', '有了此生命周期之后、componentWillReceiveProps是不走的')
+        return { a: 1 }
     }
 
-    getSnapshotBeforeUpdate(prevProps, prevState){
+    getSnapshotBeforeUpdate(prevProps, prevState) {
         console.log('getSnapshotBeforeUpdate')
         return {}
     }
@@ -14,7 +19,7 @@ class Lifecycle extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            count: 0
+            count: 1
         }
         console.log('constructor')
     }
@@ -40,9 +45,9 @@ class Lifecycle extends React.Component {
         console.log('componentDidMount-----------------初始化完成')
     }
 
-    // componentWillReceiveProps() {
-    //     console.log('componentWillReceiveProps')
-    // }
+    componentWillReceiveProps() {
+        console.log('componentWillReceiveProps')
+    }
 
     componentWillUnmount() {
         console.log('componentWillUnmount')
@@ -50,7 +55,7 @@ class Lifecycle extends React.Component {
 
     plusCount = () => {
         let { count } = this.state;
-        this.setState({count: ++count})
+        this.setState({ count: ++count })
     }
 
     render() {
@@ -60,8 +65,8 @@ class Lifecycle extends React.Component {
         const { count } = this.state;
         return (
             <>
-                <button onClick={this.plusCount}>测试生命周期：请点击</button>
-                <div>{ count }</div>
+                <button onClick={this.plusCount}>测试生命周期：请点击 state</button>
+                <div>{count}</div>
             </>
         )
     }
