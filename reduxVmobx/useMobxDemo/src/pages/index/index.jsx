@@ -78,12 +78,32 @@ class Index extends Component {
     testStore.list = [{ a: testStore.list[0].a + 1 }];
   };
 
+  setEveryP = () => {
+    const {
+      testStore: { p1, p2, p3, p4, setStoreValue },
+    } = this.props.store;
+    // ['p1', 'p2', 'p3', 'p4'].forEach((ele) => {
+    //   setStoreValue(ele, p1 + 1);
+    // });
+    setStoreValue('p1', p1 + 1);
+    setStoreValue('p2', p1 + 1);
+    setStoreValue('p3', p1 + 1);
+    setStoreValue('p4', p1 + 1);
+  };
+
+  // setAllP = () => {
+  //   const {
+  //     counterStore: { counter },
+  //     testStore: { person, dog, list, lists, p1, p2, p3, p4 },
+  //   } = this.props.store;
+  // };
+
   render() {
     const {
       counterStore: { counter },
-      testStore: { person, dog, list, lists },
+      testStore: { person, dog, list, lists, p1, p2, p3, p4 },
     } = this.props.store;
-    // console.log(testStore, 'testStore----');
+    console.log('testStore----render');
     return (
       <View className="index">
         <Button onClick={this.increment}>+</Button>
@@ -94,6 +114,8 @@ class Index extends Component {
         <Button onClick={this.shallowListChange}>shallowListChange</Button>
         <Button onClick={this.listChange}>ListChange</Button>
         <Button onClick={this.listsChange}>listsChange</Button>
+        <Button onClick={this.setEveryP}>set-every-p</Button>
+        {/* <Button onClick={this.setAllP}>set-all-p</Button> */}
         {/* // 知识点3 bad 与 good 的两种写法 */}
         <OneComp
           value="bad"
@@ -109,6 +131,10 @@ class Index extends Component {
         <View>{list[0].a}</View>
         <View>{lists[0].a}</View>
         <Text>{counter}</Text>
+        <View>{`p1:${p1}`}</View>
+        <View>{`p2:${p2}`}</View>
+        <View>{`p3:${p3}`}</View>
+        <View>{`p4:${p4}`}</View>
       </View>
     );
   }
