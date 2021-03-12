@@ -1,0 +1,15 @@
+.title {
+  padding: 20px 20px;
+  color: rgb(30, 136, 9);
+}
+.item {
+  border: 1px solid #efefef;
+  padding: 20px 20px;
+  color: #776262;
+  background-color: #fff;
+}
+
+.item.active {
+  background-color: #111;
+  color: #fff;
+}
