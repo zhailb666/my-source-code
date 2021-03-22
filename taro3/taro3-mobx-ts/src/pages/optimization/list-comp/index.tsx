@@ -4,9 +4,11 @@
  * @Description: file content
  */
 import React, { Component } from 'react';
-import { View, Button, Text } from '@tarojs/components';
+import { View } from '@tarojs/components';
 import { observer, inject } from 'mobx-react';
 import withTrace from '../../../mixins/withTrace';
+import Bad from './bad';
+import Good from './good';
 
 type PageStateProps = {
   store: {
@@ -38,7 +40,12 @@ class Index extends Component {
   componentDidHide() {}
 
   render() {
-    return <View className="index">1</View>;
+    return (
+      <View className="index">
+        <Bad />
+        <Good />
+      </View>
+    );
   }
 }
 

@@ -7,11 +7,13 @@ import React, { Component } from 'react';
 import { Provider } from 'mobx-react';
 
 import counterStore from './store/counter';
+import commonStore from './store/commonStore';
 
 import './app.scss';
 
 const store = {
   counterStore,
+  commonStore,
 };
 
 class App extends Component {

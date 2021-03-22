@@ -1,17 +1,23 @@
 /*
  * @Author: your name
+ * @Date: 2021-03-15 21:54:21
+ * @Description: file content
+ */
+/*
+ * @Author: your name
  * @Date: 2021-03-12 13:55:03
  * @Description: file content
  */
 import React, { Component } from 'react';
-import { View } from '@tarojs/components';
+import { View, Button, Text } from '@tarojs/components';
 import { observer, inject } from 'mobx-react';
-import withTrace from '../../../mixins/withTrace';
-import Bad from './bad';
-import Good from './good';
+import withTrace from '../../../../mixins/withTrace';
+import List from './list';
+import Couter from './couter';
 
 type PageStateProps = {
   store: {
+    commonStore: any;
     counterStore: {
       counter: number;
       increment: Function;
@@ -22,7 +28,7 @@ type PageStateProps = {
 };
 
 interface Index {
-  props: PageStateProps;
+  props: Partial<PageStateProps>;
 }
 
 @inject('store')
@@ -42,8 +48,8 @@ class Index extends Component {
   render() {
     return (
       <View className="index">
-        <Bad />
-        <Good />
+        <List />
+        <Couter />
       </View>
     );
   }

@@ -59,6 +59,7 @@ class Index extends Component {
   };
 
   render() {
+    console.log(this.props.store, 'this.props.store');
     const {
       counterStore: { counter },
     } = this.props.store;
@@ -68,7 +69,7 @@ class Index extends Component {
         <View
           className="item"
           onClick={() => {
-            Taro.navigateTo({ url: this.getUrl(RouterEnum.Index) });
+            Taro.navigateTo({ url: this.getUrl(RouterEnum.AutorunPage) });
           }}
         >
           1、依赖搜集（使用小组件）

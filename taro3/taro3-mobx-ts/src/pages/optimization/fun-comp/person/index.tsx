@@ -6,9 +6,7 @@
 import React, { Component } from 'react';
 import { View } from '@tarojs/components';
 import { observer, inject } from 'mobx-react';
-import withTrace from '../../../mixins/withTrace';
-import Bad from './bad';
-import Good from './good';
+import withTrace from '../../../../mixins/withTrace';
 
 type PageStateProps = {
   store: {
@@ -22,12 +20,12 @@ type PageStateProps = {
 };
 
 interface Index {
-  props: PageStateProps;
+  props: { data: any; onClick: any };
 }
 
 @inject('store')
 @observer
-@withTrace()
+@withTrace({ cname: 'person' })
 class Index extends Component {
   componentWillMount() {}
 
@@ -40,12 +38,8 @@ class Index extends Component {
   componentDidHide() {}
 
   render() {
-    return (
-      <View className="index">
-        <Bad />
-        <Good />
-      </View>
-    );
+    const { data } = this.props;
+    return <View className="index">{JSON.stringify(data)}</View>;
   }
 }
 

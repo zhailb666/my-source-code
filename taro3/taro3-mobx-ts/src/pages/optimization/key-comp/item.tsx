@@ -3,14 +3,13 @@
  * @Date: 2021-03-12 13:55:03
  * @Description: file content
  */
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { View } from '@tarojs/components';
-import { observer, inject } from 'mobx-react';
-import withTrace from '../../../mixins/withTrace';
-import Bad from './bad';
-import Good from './good';
 
 type PageStateProps = {
+  onClick: any;
+  // key: any;
+  value: any;
   store: {
     counterStore: {
       counter: number;
@@ -22,13 +21,19 @@ type PageStateProps = {
 };
 
 interface Index {
-  props: PageStateProps;
+  props: Partial<PageStateProps>;
 }
 
-@inject('store')
-@observer
-@withTrace()
-class Index extends Component {
+class Index extends PureComponent {
+  constructor(props) {
+    super(props);
+    const list = new Array(10000).fill(1).map((ele, i) => {
+      return { id: ele + i };
+    });
+    this.state = {
+      list: list,
+    };
+  }
   componentWillMount() {}
 
   componentDidMount() {}
@@ -40,10 +45,10 @@ class Index extends Component {
   componentDidHide() {}
 
   render() {
+    const { value, onClick } = this.props;
     return (
-      <View className="index">
-        <Bad />
-        <Good />
+      <View onClick={onClick && onClick} className="index">
+        {value.id}
       </View>
     );
   }

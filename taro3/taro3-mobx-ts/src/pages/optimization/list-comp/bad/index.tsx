@@ -1,13 +1,17 @@
 /*
  * @Author: your name
+ * @Date: 2021-03-15 21:54:21
+ * @Description: file content
+ */
+/*
+ * @Author: your name
  * @Date: 2021-03-12 13:55:03
  * @Description: file content
  */
 import React, { Component } from 'react';
-import { Button, View } from '@tarojs/components';
+import { View, Input, Button } from '@tarojs/components';
 import { observer, inject } from 'mobx-react';
-import withTrace from '../../../mixins/withTrace';
-import Author from './Author';
+import withTrace from '../../../../mixins/withTrace';
 
 type PageStateProps = {
   store: {
@@ -29,7 +33,6 @@ interface Index {
 @observer
 @withTrace()
 class Index extends Component {
-  static count = 1;
   componentWillMount() {}
 
   componentDidMount() {}
@@ -40,27 +43,28 @@ class Index extends Component {
 
   componentDidHide() {}
 
-  changeMuiltlevel = () => {
-    const {
-      store: {
-        commonStore: { seAuthorName },
-      },
-    } = this.props as PageStateProps;
-
-    seAuthorName(`zlb_${Index.count++}`);
+  toAdd = () => {
+    this.props.store?.commonStore.addcount();
   };
 
   render() {
+    const _props = this.props as PageStateProps;
     const {
       store: {
-        commonStore: { muiltlevel },
+        commonStore: { list3, count },
       },
-    } = this.props as PageStateProps;
+    } = _props;
     return (
       <View className="index">
-        {/* Index 观察的是 muiltlevel.author 引用，若整个过程中 muiltlevel.author 的引用并没有发生改变，则不重新渲染 */}
-        <Button onClick={this.changeMuiltlevel}>点击</Button>
-        <Author author={muiltlevel.author} />
+        {count}
+        <Button onClick={this.toAdd}>加1</Button>
+        {list3.map((ele, i) => {
+          return (
+            <View key={`${ele}_${i}`}>
+              {ele}_{i}
+            </View>
+          );
+        })}
       </View>
     );
   }

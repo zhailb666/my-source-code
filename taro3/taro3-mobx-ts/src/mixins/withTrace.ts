@@ -6,9 +6,9 @@
 
 import { tracksTime } from '../utils/common';
 
-function withTrace(options: any) {
-  const { cname, group } = options || {};
-  return function traceComponent(WrappedComponent: any) {
+function withTrace(options?: any) {
+  const { cname, group, eachTime = false } = options || {};
+  return function traceComponent(WrappedComponent: any): any {
     class WithTrace extends WrappedComponent {
       componentWillMount() {
         console.log(this, 'this-------');
@@ -16,6 +16,7 @@ function withTrace(options: any) {
           if (cname) {
             this.dirName = cname;
           } else {
+            if (!this.props.tid) return;
             console.log(this.props.tid, 'this.props.$tid');
             const [preone, lastname] = this.props.tid
               .split('?')[0]
@@ -46,6 +47,7 @@ function withTrace(options: any) {
           group: group || this.dirName,
           print: true,
         });
+
         if (super.componentDidMount) {
           super.componentDidMount();
         }
@@ -57,9 +59,27 @@ function withTrace(options: any) {
           group: group || this.dirName,
           print: true,
         });
+        if (eachTime) {
+          tracksTime({
+            key: `${this.dirName}_componentDidUpdate`,
+            group: `${group || this.dirName}_render`,
+            down: true,
+          });
+        }
         if (super.componentDidUpdate) {
           super.componentDidUpdate();
         }
+      }
+
+      render() {
+        if (eachTime) {
+          tracksTime({
+            key: `${this.dirName}_render`,
+            group: `${group || this.dirName}_render`,
+            print: true,
+          });
+        }
+        return super.render();
       }
     }
 
