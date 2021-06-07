@@ -7,3 +7,4 @@
 - npm init
 - add file: src/*, tsconfig.json, webpack.config.js, gulp.js
 - npm i @types/query-string query-string react react-router
+- 

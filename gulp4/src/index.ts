@@ -21,6 +21,18 @@ interface UrlState {
   [key: string]: any;
 }
 
+[1, 2, 3].map((n) => n + 1);
+
+const f1 = async () => {
+  await setTimeout(() => { console.log(3)})
+  await new Promise((resolve, reject)=> {
+    resolve(true)
+  }).then(() => {
+    console.log(1)
+  })
+  console.log(2)
+}
+
 export default <S extends UrlState = UrlState>(initialState?: S | (() => S), options?: Options) => {
   type state = Partial<{ [key in keyof S]: any }>;
   const { navigateMode = 'push' } = options || {};
