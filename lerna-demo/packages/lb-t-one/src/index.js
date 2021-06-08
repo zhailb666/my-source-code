@@ -4,5 +4,5 @@
  * @Description: file content
  */
 export const main = (a) => {
-  console.log('dist-one-src', JSON.stringify(a))
+  console.log('dist-one-src1', JSON.stringify(a))
 };
