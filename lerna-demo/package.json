@@ -11,5 +11,7 @@
   "devDependencies": {
     "lerna": "^3.22.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "lb-t-one": "0.0.6-alpha.0"
+  }
 }
