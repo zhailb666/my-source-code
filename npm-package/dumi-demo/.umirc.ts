@@ -6,7 +6,7 @@
 import { defineConfig } from 'dumi';
 
 export default defineConfig({
-  title: 'dumi-demo 哈~',
+  title: 'access-mini 组件库',
   mode: 'site',
   favicon:
     'https://user-images.githubusercontent.com/9554297/83762004-a0761b00-a6a9-11ea-83b4-9c8ff721d4b8.png',
@@ -44,32 +44,4 @@ export default defineConfig({
       },
     ],
   },
-  // menus: {
-  //   '/components': [
-  //     {
-  //       title: '架构设计',
-  //       children: ['components.md', 'schema.md'],
-  //     },
-  //     {
-  //       title: '布局',
-  //       children: [
-  //         'layout',
-  //         'PageContainer/index',
-  //         'card',
-  //         'WaterMark/index',
-  //         'StatisticCard/index',
-  //       ],
-  //     },
-  //   ],
-  //   '/en-US/components': [
-  //     {
-  //       title: 'Architecture Design',
-  //       children: ['components.en-US.md'],
-  //     },
-  //     {
-  //       title: 'Layout',
-  //       children: ['layout', 'PageContainer/index', 'card'],
-  //     },
-  //   ],
-  // },
 });

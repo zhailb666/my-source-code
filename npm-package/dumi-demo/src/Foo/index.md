@@ -1,4 +1,13 @@
-
+---
+title: Foo
+nav:
+  title: 组件
+  path: /components
+group:
+  path: /layout
+  title: 布局组件
+order: 1
+---
 ## Foo
 
 Demo:
