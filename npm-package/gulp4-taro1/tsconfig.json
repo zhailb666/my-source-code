@@ -1,0 +1,6 @@
+{
+  "extends": "./commonTsconfig.json",
+  "compilerOptions": {
+    "rootDir": "src"
+  }
+}
