@@ -1,0 +1,22 @@
+{
+  "name": "lb-t-util",
+  "version": "0.0.0",
+  "description": "",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-g": "gulp",
+    "build": "gulp && webpack-cli"
+  },
+  "files": [
+    "dist",
+    "lib",
+    "es",
+    "package.json"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "qs": "^6.10.1"
+  }
+}

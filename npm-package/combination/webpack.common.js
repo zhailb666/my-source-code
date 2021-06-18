@@ -13,20 +13,20 @@ module.exports = {
   resolve: {
     extensions: [".json", ".js"],
   },
-  // module: {
-  //   rules: [
-  //     {
-  //       test: /\.jsx?$/,
-  //       use: {
-  //         loader: 'babel-loader',
-  //       },
-  //     }
-  //   ],
-  // },
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+    ],
+  },
   externals: [
     {
       react: "React",
       "react-router": "react-router",
+      "@tarojs/taro": "@tarojs/taro",
+      "@tarojs/components": "@tarojs/components",
     },
   ],
 };
