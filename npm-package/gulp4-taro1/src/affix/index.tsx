@@ -5,11 +5,11 @@ import React from 'react'
 
 let globalSystemInfo = getSystemInfo()
 
-export type AffixProps = {
-  custom?: false;
-  offsetTop?: number;
-  scrollTop?: number;
-  wrapStyle?: any;
+export interface AffixProps {
+  custom?: false
+  offsetTop?: number
+  scrollTop?: number
+  wrapStyle?: any
   color?: string
 };
 
@@ -20,7 +20,7 @@ class Affix extends Component<AffixProps, { configStyle: any, height?: number, w
     scrollTop: null, // 滚动高度
     wrapStyle: {}
   }
-
+  
   constructor(props) {
     super(props)
     this.state = {
