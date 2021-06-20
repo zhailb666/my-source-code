@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-g": "gulp",
-    "build": "gulp && webpack-cli"
+    "build": "gulp",
+    "build-all": "gulp && webpack-cli"
   },
   "files": [
     "dist",

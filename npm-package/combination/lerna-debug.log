@@ -1,0 +1,59 @@
+0 silly input [ 'build' ]
+1 silly flags {
+1 silly flags   _: [ 'run' ],
+1 silly flags   'reject-cycles': false,
+1 silly flags   rejectCycles: false,
+1 silly flags   script: 'build',
+1 silly flags   args: []
+1 silly flags }
+2 verbose rootPath /Users/liangbiao/dev/my-source-code/npm-package/combination
+3 info version 2.11.0
+4 silly existsSync /Users/liangbiao/dev/my-source-code/npm-package/combination/VERSION
+5 info versioning independent
+6 silly initialize attempt
+7 silly initialize success
+8 silly execute attempt
+9 silly runScriptInDir build [] lb-t-util
+10 silly getExecOpts {
+10 silly getExecOpts   cwd: '/Users/liangbiao/dev/my-source-code/npm-package/combination/packages/lb-t-util'
+10 silly getExecOpts }
+11 silly runScriptInDir build [] lb-taro1-ui
+12 silly getExecOpts {
+12 silly getExecOpts   cwd: '/Users/liangbiao/dev/my-source-code/npm-package/combination/packages/lb-taro1-ui'
+12 silly getExecOpts }
+13 error build Errored while running script in 'lb-t-util'
+14 error execute callback with error
+15 error Error: Command failed: npm run build
+15 error [20:22:46] 'cjs' errored after 13 ms
+15 error [20:22:46] Error: Invalid glob argument:
+15 error     at Object.src (/Users/liangbiao/dev/my-source-code/npm-package/combination/node_modules/vinyl-fs/lib/src/index.js:20:11)
+15 error     at Function.src (/Users/liangbiao/dev/my-source-code/npm-package/combination/node_modules/gulp-typescript/release/project.js:90:16)
+15 error     at /Users/liangbiao/dev/my-source-code/npm-package/combination/gulpfile.js:22:6
+15 error     at cjs (/Users/liangbiao/dev/my-source-code/npm-package/combination/node_modules/undertaker/lib/set-task.js:13:15)
+15 error     at bound (domain.js:427:14)
+15 error     at runBound (domain.js:440:12)
+15 error     at asyncRunner (/Users/liangbiao/dev/my-source-code/npm-package/combination/node_modules/async-done/index.js:55:18)
+15 error     at processTicksAndRejections (internal/process/task_queues.js:79:11)
+15 error [20:22:46] 'default' errored after 25 ms
+15 error npm ERR! code ELIFECYCLE
+15 error npm ERR! errno 1
+15 error npm ERR! lb-t-util@0.0.0 build: `gulp && webpack-cli`
+15 error npm ERR! Exit status 1
+15 error npm ERR!
+15 error npm ERR! Failed at the lb-t-util@0.0.0 build script.
+15 error npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+15 error
+15 error npm ERR! A complete log of this run can be found in:
+15 error npm ERR!     /Users/liangbiao/.npm/_logs/2021-06-20T12_22_46_123Z-debug.log
+15 error
+15 error > lb-t-util@0.0.0 build /Users/liangbiao/dev/my-source-code/npm-package/combination/packages/lb-t-util
+15 error > gulp && webpack-cli
+15 error
+15 error [20:22:46] Using gulpfile ~/dev/my-source-code/npm-package/combination/packages/lb-t-util/gulpfile.js
+15 error [20:22:46] Starting 'default'...
+15 error [20:22:46] Starting 'clean'...
+15 error [20:22:46] Finished 'clean' after 10 ms
+15 error [20:22:46] Starting 'cjs'...
+15 error No inputs were found in config file '/Users/liangbiao/dev/my-source-code/npm-package/combination/packages/lb-t-util/tsconfig.json'. Specified 'include' paths were '["**/*"]' and 'exclude' paths were '["../../node_modules","../../lib","../../es","../../dist"]'.
+15 error
+15 error     at /Users/liangbiao/dev/my-source-code/npm-package/combination/node_modules/lerna/node_modules/execa/index.js:236:11

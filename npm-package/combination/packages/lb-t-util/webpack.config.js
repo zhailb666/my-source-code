@@ -3,9 +3,11 @@
  * @Date: 2021-06-02 22:07:20
  * @Description: file content
  */
-const { merge } = require('webpack-merge');
-const common = require('../../webpack.common.js');
-const path = require('path');
+var merge = require('webpack-merge').merge;
+
+var common = require('../../webpack.common.js');
+
+var path = require('path');
 
 module.exports = merge(common, {
   entry: './es/index.js',
@@ -13,8 +15,8 @@ module.exports = merge(common, {
     filename: 'index.js',
     library: {
       name: 'MyLibrary',
-      type: 'umd', // 很多type|| amd, umd, commonjs, module, jsonp
+      type: 'umd'
     },
-    path: path.resolve(__dirname, './dist'),
-  },
+    path: path.resolve(__dirname, './dist')
+  }
 });
