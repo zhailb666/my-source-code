@@ -20,6 +20,16 @@ group:
 
 ## 代码演示
 
+```javascript
+import { stringify } from 'lb-t-util'
+
+const obj = { name: 'zlb'}
+const s = stringify(obj)
+```
+
+### 数据缓存
+
+<code src="../demo/demo.tsx" />
 
 ## 致谢
-- [zeit/swr](https://github.com/zeit/swr)
+- [dumi](https://github.com/umijs/dumi)

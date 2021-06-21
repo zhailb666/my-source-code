@@ -35,14 +35,16 @@ export default defineConfig({
       null,
       {
         title: 'GitHub',
-        path: 'https://github.com/ant-design/pro-components',
+        path:
+          'https://github.com/zhailb666/my-source-code/tree/master/npm-package/combination',
       },
     ],
     'zh-CN': [
       null,
       {
         title: 'GitHub',
-        path: 'https://github.com/ant-design/pro-components',
+        path:
+          'https://github.com/zhailb666/my-source-code/tree/master/npm-package/combination',
       },
     ],
   },
