@@ -12,11 +12,11 @@ var path = require('path');
 module.exports = merge(common, {
   entry: './es/index.js',
   output: {
-    filename: 'index.js',
+    filename: 'lb-t-util.js',
     library: {
-      name: 'MyLibrary',
-      type: 'umd'
+      name: 'lb-t-util',
+      type: 'umd',
     },
-    path: path.resolve(__dirname, './dist')
-  }
+    path: path.resolve(__dirname, './dist'),
+  },
 });
