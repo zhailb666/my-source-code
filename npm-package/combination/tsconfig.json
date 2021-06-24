@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ES5",
+    "target": "es2017",
     "moduleResolution": "node",
-    "jsx": "react",
+    "jsxFactory": "Taro.createElement",
+    "jsx": "preserve",
     "allowJs": true,
     "esModuleInterop": true,
     "downlevelIteration": true,
