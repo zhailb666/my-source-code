@@ -23,7 +23,7 @@ gulp.task('cjs', function() {
     .pipe(tsProject())
     .pipe(
       babel({
-        configFile: '../../babel.config.js',
+        configFile: '../../taro-babelrc.js',
       }),
     )
     .pipe(gulp.dest('lib/'));
@@ -38,7 +38,7 @@ gulp.task('es', function() {
     .pipe(tsProject())
     .pipe(
       babel({
-        configFile: '../../babel.config.js',
+        configFile: '../../taro-babelrc.js',
       }),
     )
     .pipe(gulp.dest('es/'));

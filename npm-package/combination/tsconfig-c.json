@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es2017",
+    "target": "ES5",
     "moduleResolution": "node",
-    "jsxFactory": "Taro.createElement",
-    "jsx": "preserve",
+    "jsx": "react",
     "allowJs": true,
     "esModuleInterop": true,
     "downlevelIteration": true,
@@ -17,13 +16,5 @@
     "declaration": false,
     "strictNullChecks": true
   },
-  "exclude": [
-    "node_modules",
-    "lib",
-    "es",
-    "dist",
-    "**/__tests__",
-    "**/__test__",
-    "**/demo"
-  ]
+  "exclude": ["node_modules", "lib", "es", "dist", "**/__tests__", "**/__test__", "**/demo"]
 }
