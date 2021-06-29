@@ -1,7 +1,7 @@
 import React from 'react';
 import Taro, { Component } from '@tarojs/taro';
 import { View } from '@tarojs/components';
-import { getSystemInfo } from './utils.js';
+import { getSystemInfo } from './utils';
 
 let globalSystemInfo = getSystemInfo();
 
