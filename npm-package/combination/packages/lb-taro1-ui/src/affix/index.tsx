@@ -125,7 +125,7 @@ class Affix extends Component<
                 {this.props.children}
               </View>
             ),
-            fixedTop: (
+            'fixedTop': (
               <View>
                 <View
                   style={{
@@ -133,7 +133,7 @@ class Affix extends Component<
                     width: `${width}px`,
                     height: `${height}px`,
                   }}
-                ></View>
+                />
                 <View
                   className="item"
                   style={{
@@ -147,7 +147,7 @@ class Affix extends Component<
                 </View>
               </View>
             ),
-            bottomTop: (
+            'bottomTop': (
               <View
                 className="item"
                 style={{

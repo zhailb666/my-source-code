@@ -11,28 +11,37 @@ module.exports = {
     [
       '@babel/env',
       {
-        spec: true,
+        spec: false,
         useBuiltIns: false,
         loose: true,
         modules: false,
+        targets: {
+          esmodules: true,
+        },
       },
     ],
   ],
   plugins: [
-    '@babel/plugin-proposal-class-properties',
+    // '@babel/plugin-proposal-class-properties',
+    // [
+    //   '@babel/plugin-transform-typescript',
+    //   {
+    //     isTSX: true,
+    //   },
+    // ],
     [
       '@babel/plugin-transform-react-jsx',
       {
         pragma: 'Nerv.createElement',
       },
     ],
-    ['@babel/plugin-proposal-object-rest-spread'],
-    [
-      'babel-plugin-transform-taroapi',
-      {
-        apis,
-        packageName: '@tarojs/taro-h5',
-      },
-    ],
+    // ['@babel/plugin-proposal-object-rest-spread'],
+    // [
+    //   'babel-plugin-transform-taroapi',
+    //   {
+    //     apis,
+    //     packageName: '@tarojs/taro-h5',
+    //   },
+    // ],
   ],
 };

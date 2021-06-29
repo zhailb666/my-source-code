@@ -3,6 +3,6 @@
  * @Date: 2021-06-19 21:07:34
  * @Description: file content
  */
-const commonConfig = require('../../gulpfile');
+const { commonTask } = require('../../gulpfile');
 
-exports.default = commonConfig.default;
+exports.default = commonTask;

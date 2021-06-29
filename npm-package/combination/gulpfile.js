@@ -56,14 +56,20 @@ gulp.task('declaration', function() {
     .pipe(gulp.dest('lib/'));
 });
 
-gulp.task('copyReadme', async function() {
-  await gulp.src('../../README.md').pipe(gulp.dest('../../packages/hooks'));
+gulp.task('copy', async function() {
+  await gulp
+    .src('./src/**/*')
+    .pipe(gulp.dest('es/'))
+    .pipe(gulp.dest('lib/'))
+    .pipe(gulp.dest('dist/'));
 });
+
+exports.commonTask = gulp.series('clean', 'cjs', 'es', 'declaration');
 
 exports.default = gulp.series(
   'clean',
-  'cjs',
-  'es',
-  'declaration',
-  // 'copyReadme',
+  // 'cjs',
+  // 'es',
+  // 'declaration',
+  'copy',
 );

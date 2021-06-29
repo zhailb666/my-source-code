@@ -7,5 +7,7 @@
       "files": ".prettierrc",
       "options": { "parser": "json" }
     }
-  ]
+  ],
+  "proseWrap": "preserve",
+  "quoteProps": "preserve"
 }

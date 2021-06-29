@@ -6,40 +6,24 @@
 1 silly flags   script: 'build',
 1 silly flags   args: []
 1 silly flags }
-2 verbose rootPath /Users/zhailiangbiao/access-company/my-source-code/npm-package/combination
+2 verbose rootPath /Users/liangbiao/dev/my-source-code/npm-package/combination
 3 info version 2.11.0
-4 silly existsSync /Users/zhailiangbiao/access-company/my-source-code/npm-package/combination/VERSION
+4 silly existsSync /Users/liangbiao/dev/my-source-code/npm-package/combination/VERSION
 5 info versioning independent
 6 silly initialize attempt
 7 silly initialize success
 8 silly execute attempt
 9 silly runScriptInDir build [] lb-t-util
 10 silly getExecOpts {
-10 silly getExecOpts   cwd: '/Users/zhailiangbiao/access-company/my-source-code/npm-package/combination/packages/lb-t-util'
+10 silly getExecOpts   cwd: '/Users/liangbiao/dev/my-source-code/npm-package/combination/packages/lb-t-util'
 10 silly getExecOpts }
 11 silly runScriptInDir build [] lb-taro1-ui
 12 silly getExecOpts {
-12 silly getExecOpts   cwd: '/Users/zhailiangbiao/access-company/my-source-code/npm-package/combination/packages/lb-taro1-ui'
+12 silly getExecOpts   cwd: '/Users/liangbiao/dev/my-source-code/npm-package/combination/packages/lb-taro1-ui'
 12 silly getExecOpts }
 13 error build Errored while running script in 'lb-taro1-ui'
 14 error execute callback with error
 15 error Error: Command failed: npm run build
-15 error [17:43:14] 'cjs' errored after 2.57 s
-15 error [17:43:14] [31mSyntaxError[39m in plugin "[36mgulp-babel[39m"
-15 error Message:
-15 error     /Users/zhailiangbiao/access-company/my-source-code/npm-package/combination/packages/lb-taro1-ui/src/affix/index.jsx: Support for the experimental syntax 'jsx' isn't currently enabled (101:17):
-15 error
-15 error    99 |         // console.log(width, height, navBarHeight, 'width-height')
-15 error   100 |         const type = this.getRenderType();
-15 error > 101 |         return (<components_1.View className="affix_wrapper">
-15 error       |                 ^
-15 error   102 |         {{
-15 error   103 |             '': (<components_1.View className="item" style={{ ...wrapStyle }}>
-15 error   104 |                 {this.props.children}
-15 error
-15 error Add @babel/preset-react (https://git.io/JfeDR) to the 'presets' section of your Babel config to enable transformation.
-15 error If you want to leave it as-is, add @babel/plugin-syntax-jsx (https://git.io/vb4yA) to the 'plugins' section to enable parsing.
-15 error [17:43:14] 'default' errored after 2.6 s
 15 error npm ERR! code ELIFECYCLE
 15 error npm ERR! errno 1
 15 error npm ERR! lb-taro1-ui@0.2.0 build: `gulp && webpack-cli`
@@ -47,17 +31,41 @@
 15 error npm ERR!
 15 error npm ERR! Failed at the lb-taro1-ui@0.2.0 build script.
 15 error npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+15 error npm WARN Local package.json exists, but node_modules missing, did you mean to install?
 15 error
 15 error npm ERR! A complete log of this run can be found in:
-15 error npm ERR!     /Users/zhailiangbiao/.npm/_logs/2021-06-25T09_43_14_871Z-debug.log
+15 error npm ERR!     /Users/liangbiao/.npm/_logs/2021-06-29T14_38_18_908Z-debug.log
 15 error
-15 error > lb-taro1-ui@0.2.0 build /Users/zhailiangbiao/access-company/my-source-code/npm-package/combination/packages/lb-taro1-ui
+15 error > lb-taro1-ui@0.2.0 build /Users/liangbiao/dev/my-source-code/npm-package/combination/packages/lb-taro1-ui
 15 error > gulp && webpack-cli
 15 error
-15 error [17:43:12] Using gulpfile ~/access-company/my-source-code/npm-package/combination/packages/lb-taro1-ui/gulpfile.js
-15 error [17:43:12] Starting 'default'...
-15 error [17:43:12] Starting 'clean'...
-15 error [17:43:12] Finished 'clean' after 28 ms
-15 error [17:43:12] Starting 'cjs'...
+15 error [22:38:18] Using gulpfile ~/dev/my-source-code/npm-package/combination/packages/lb-taro1-ui/gulpfile.js
+15 error [22:38:18] Starting 'default'...
+15 error [22:38:18] Starting 'clean'...
+15 error [22:38:18] Finished 'clean' after 26 ms
+15 error [22:38:18] Starting 'copy'...
+15 error [22:38:18] Finished 'copy' after 14 ms
+15 error [22:38:18] Finished 'default' after 42 ms
+15 error asset index.js 662 bytes [emitted] (name: main)
 15 error
-15 error     at /Users/zhailiangbiao/access-company/my-source-code/npm-package/combination/node_modules/lerna/node_modules/execa/index.js:236:11
+15 error ERROR in main
+15 error Module not found: Error: Can't resolve './es/index.js' in '/Users/liangbiao/dev/my-source-code/npm-package/combination/packages/lb-taro1-ui'
+15 error resolve './es/index.js' in '/Users/liangbiao/dev/my-source-code/npm-package/combination/packages/lb-taro1-ui'
+15 error   using description file: /Users/liangbiao/dev/my-source-code/npm-package/combination/packages/lb-taro1-ui/package.json (relative path: .)
+15 error     Field 'browser' doesn't contain a valid alias configuration
+15 error     using description file: /Users/liangbiao/dev/my-source-code/npm-package/combination/packages/lb-taro1-ui/es/package.json (relative path: ./index.js)
+15 error       no extension
+15 error         Field 'browser' doesn't contain a valid alias configuration
+15 error         /Users/liangbiao/dev/my-source-code/npm-package/combination/packages/lb-taro1-ui/es/index.js doesn't exist
+15 error       .json
+15 error         Field 'browser' doesn't contain a valid alias configuration
+15 error         /Users/liangbiao/dev/my-source-code/npm-package/combination/packages/lb-taro1-ui/es/index.js.json doesn't exist
+15 error       .js
+15 error         Field 'browser' doesn't contain a valid alias configuration
+15 error         /Users/liangbiao/dev/my-source-code/npm-package/combination/packages/lb-taro1-ui/es/index.js.js doesn't exist
+15 error       as directory
+15 error         /Users/liangbiao/dev/my-source-code/npm-package/combination/packages/lb-taro1-ui/es/index.js doesn't exist
+15 error
+15 error webpack 5.39.1 compiled with 1 error in 47 ms
+15 error
+15 error     at /Users/liangbiao/dev/my-source-code/npm-package/combination/node_modules/lerna/node_modules/execa/index.js:236:11

@@ -2,19 +2,16 @@
   "name": "lb-taro1-ui",
   "version": "0.2.0",
   "description": "",
-  "main": "./lib/index.js",
-  "module": "./es/index.js",
-  "types": "./lib/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-g": "gulp",
-    "build": "gulp && webpack-cli",
-    "build-all": "gulp && webpack-cli"
+    "build": "gulp",
+    "build-all": "gulp"
   },
   "files": [
     "dist",
-    "lib",
-    "es",
     "package.json"
   ],
   "author": "",
