@@ -9,27 +9,18 @@ group:
   order: 3
 ---
 
-# useRequest
+## Affix 参数
 
-一个强大的管理异步数据请求的 Hook.
+| 参数       | 说明           | 类型    | 可选值 | 默认值  |
+| ---------- | -------------- | ------- | ------ | ------- |
+| custom      | custom 判断是否为自定义的头部navbar,  top: 0 定位是从胶囊下面开始计算； custom: true 时候 top:0 是从屏幕左上方计算的     | Number  | -      | false   |
+| offsetTop   | 距离顶部多少元素会变为fix状态   | Boolean | -      | null |
+| scrollTop | 滚动距离顶部的位置 | Number  | -      | -       |
+| wrapStyle | 包裹容器样式 | Object  | -      | -       |
 
-**核心特性**
+## Affix 事件(示例-无)
+| 事件名称 | 说明                         | 返回参数 |
+| -------- | ---------------------------- | -------- |
+| onClose  | 元素被关闭触发的事件         | -        |
+| onCancel | 点击了底部取消按钮触发的事件 | -        |
 
-* 自动请求/手动请求
-* SWR(stale-while-revalidate)
-* 缓存/预加载
-* 屏幕聚焦重新请求
-* 轮询
-* 防抖
-* 节流
-* 并行请求
-* 依赖请求
-* loading delay
-* 分页
-* 加载更多，数据恢复 + 滚动位置恢复
-* ......
-
-
-## 致谢
-- [zeit/swr](https://github.com/zeit/swr)
-- [tannerlinsley/react-query](https://github.com/tannerlinsley/react-query)
