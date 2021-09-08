@@ -1,0 +1,14 @@
+export var ProxyRaw = new WeakMap();
+export var RawProxy = new WeakMap();
+export var RawShallowProxy = new WeakMap();
+export var RawNode = new WeakMap();
+export var RawReactionsMap = new WeakMap();
+export var ReactionStack = [];
+export var BatchCount = { value: 0 };
+export var UntrackCount = { value: 0 };
+export var BatchScope = { value: false };
+export var PendingReactions = new Set();
+export var PendingScopeReactions = new Set();
+export var MakeObservableSymbol = Symbol('MakeObservableSymbol');
+export var ObserverListeners = new Set();
+//# sourceMappingURL=environment.js.map
