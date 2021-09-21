@@ -14,8 +14,8 @@
         </style>
         <!-- 运行es6语法 -->
         <script type='module'>
-            // import './demo_proxy.js'
-            import './demo_dataTree.js'
+            import './demo_proxy.js'
+            // import './demo_dataTree.js'
             import { observable, autorun, observe } from './index.js'
              const obs = observable({
                     aa: {
@@ -25,18 +25,19 @@
                         dd: 124,
                     },
                 })
-                 autorun(() => {
-                        // 首次的时候会触发，变化的时候也会触发
-                        // 总共触发2次
-                        console.log('autorun1', obs.aa.bb)
-                    })
+                //  autorun(() => {
+                //         // 首次的时候会触发，变化的时候也会触发
+                //         // 总共触发2次
+                //         console.log('autorun1', obs.aa.bb)
+                //     })
 
-                      const dispose = observe(obs, (change) => {
-                            console.log('observe1', change)
-                        })
+                    //   const dispose = observe(obs, (change) => {
+                    //         console.log('observe1', change)
+                    //     })
 
                     //数据进行set操作的时候，就会触发
-                    obs.aa.bb = 44
+                    console.log(obs.aa.bb)
+                    // obs.aa.bb = 44
                     // obs.aa.bb = 66
                 // console.log(obs)
         </script>

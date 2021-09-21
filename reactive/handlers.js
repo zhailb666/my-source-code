@@ -202,18 +202,20 @@ export var baseHandlers = {
             var descriptor = Reflect.getOwnPropertyDescriptor(target, key);
             if (!descriptor ||
                 !(descriptor.writable === false && descriptor.configurable === false)) {
-                    console.log(target, key, result, 'createObservable----get')
+                    // console.log(target, key, result, 'createObservable----get')
                 return createObservable(target, key, result);
             }
         }
         return result;
     },
     has: function (target, key) {
+        console.log('has')
         var result = Reflect.has(target, key);
         bindTargetKeyWithCurrentReaction({ target: target, key: key, type: 'has' });
         return result;
     },
     ownKeys: function (target) {
+        console.log('ownKeys')
         bindTargetKeyWithCurrentReaction({ target: target, type: 'iterate' });
         return Reflect.ownKeys(target);
     },
@@ -254,6 +256,7 @@ export var baseHandlers = {
         return true;
     },
     deleteProperty: function (target, key) {
+         console.log('deleteProperty')
         var res = Reflect.deleteProperty(target, key);
         var oldValue = target[key];
         runReactionsFromTargetKey({

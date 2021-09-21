@@ -5,11 +5,14 @@
  */
 export var RawProxy1 = new WeakMap();
 
+var wellKnownSymbols = new Set(Object.getOwnPropertyNames(Symbol)
+    .map(function (key) { return Symbol[key]; })
+    .filter(function (value) { return typeof value === 'symbol'; }));
 
 var obr = (obj) => {
     var proxy = new Proxy(obj, {
          get: function (target, key, receiver) {
-             console.log(target, key, receiver, 'when-get-')
+             console.log(target, key, target[key], receiver, 'when-get-')
             var result = target[key]; // use Reflect.get is too slow
             if (typeof key === 'symbol' && wellKnownSymbols.has(key)) {
                 return result;
@@ -40,6 +43,10 @@ var b = {
 
 var a1 = obr(b)
 console.log(a1.aa.bb, 'a1.aa.bb')
-
-a1.aa.bb = 4
 console.log(a1.aa.bb, 'a1.aa.bb')
+
+
+// a1.aa.bb = 4
+// console.log(a1.aa.bb, 'a1.aa.bb')
+
+// console.log('demo_proxy_end')
