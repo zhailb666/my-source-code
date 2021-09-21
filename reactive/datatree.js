@@ -68,9 +68,13 @@ var DataNode = /** @class */ (function () {
 }());
 export { DataNode };
 export var buildDataTree = function (target, key, value) {
+    // console.log(target, key, value, 'buildDataTree---=-')
     var currentNode = RawNode.get(ProxyRaw.get(value) || value);
+    // console.log(currentNode, 'currentNode')
     if (currentNode)
         return currentNode;
-    RawNode.set(value, new DataNode(target, key, value));
+        const dnode = new DataNode(target, key, value)
+        console.log(dnode, 'dnode-=-')
+    RawNode.set(value, dnode);
 };
 //# sourceMappingURL=datatree.js.map
