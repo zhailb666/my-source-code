@@ -3,7 +3,7 @@
  * @Date: 2021-09-21 18:15:30
  * @Description: file content
  */
-var RawNode1 = new WeakMap();
+export var RawNode1 = new WeakMap();
 
 function DataNode(target, key, value) {
         this.target = target;
@@ -54,7 +54,7 @@ DataNode.prototype.contains = function (node) {
         return true;
     var parent = node.parent;
     while (!!parent) {
-        console.log(parent, 'parent-=-=')
+        // console.log(parent, 'parent-=-=')
         if (this.isEqual(parent))
             return true;
         parent = parent.parent;
@@ -62,9 +62,15 @@ DataNode.prototype.contains = function (node) {
     return false;
 };
 
-function buildDataTree(target, key, value) {
+export function buildDataTree(target, key, value) {
    const d =  new DataNode(target, key, value)
-   console.log(value, 'value--key')
+//    console.log(value, 'value--key')
+   RawNode1.set(value, d)
+}
+
+export function buildDataTreeNew(value, target, key) {
+   const d =  new DataNode(target, key, value)
+//    console.log(value, 'value--key')
    RawNode1.set(value, d)
 }
 

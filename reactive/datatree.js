@@ -74,7 +74,7 @@ export var buildDataTree = function (target, key, value) {
     if (currentNode)
         return currentNode;
         const dnode = new DataNode(target, key, value)
-        console.log(dnode, 'dnode-=-')
+        // console.log(dnode, 'dnode-=-')
     RawNode.set(value, dnode);
 };
 //# sourceMappingURL=datatree.js.map

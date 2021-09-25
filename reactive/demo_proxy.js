@@ -3,6 +3,12 @@
  * @Date: 2021-09-21 18:15:30
  * @Description: file content
  */
+//    return new Proxy(result, {
+//       get: function (target, key, receiver) { 
+//           console.log(target, key, 'target, key===哈哈---')
+//           return target[key]
+//       }
+//    })
 export var RawProxy1 = new WeakMap();
 
 var wellKnownSymbols = new Set(Object.getOwnPropertyNames(Symbol)
@@ -22,7 +28,7 @@ var obr = (obj) => {
                 return observableResult;
             }
             if(!observableResult && typeof result === 'object') {
-                obr(result) // 如果不做这个proxy只会对第一层数据的属性代理有效
+                return obr(result) // 如果不做这个proxy只会对第一层数据的属性代理有效, 如果不返回obr 也是有问题的
             }
             return result;
          },
@@ -43,10 +49,10 @@ var b = {
 
 var a1 = obr(b)
 console.log(a1.aa.bb, 'a1.aa.bb')
-console.log(a1.aa.bb, 'a1.aa.bb')
+// console.log(a1.aa.bb, 'a1.aa.bb')
 
 
 // a1.aa.bb = 4
 // console.log(a1.aa.bb, 'a1.aa.bb')
 
-// console.log('demo_proxy_end')
+console.log('demo_proxy_end')

@@ -196,7 +196,7 @@ export var baseHandlers = {
         if (observableResult) {
             return observableResult;
         }
-        console.log(target, key, result, '----get')
+        // console.log(target, key, result, '----get')
         if (!isObservable(result) && isSupportObservable(result)) {
            
             var descriptor = Reflect.getOwnPropertyDescriptor(target, key);
@@ -222,7 +222,7 @@ export var baseHandlers = {
     set: function (target, key, value, receiver) {
         var hadKey = hasOwnProperty.call(target, key);
         var newValue = createObservable(target, key, value);
-        console.log(target, newValue, 'newValue----')
+        // console.log(target, newValue, 'newValue----')
         var oldValue = target[key];
         target[key] = newValue; // use Reflect.set is too slow
         if (!hadKey) {
@@ -236,14 +236,14 @@ export var baseHandlers = {
             });
         }
         else if (value !== oldValue) {
-            console.log({
-                target: target,
-                key: key,
-                value: newValue,
-                oldValue: oldValue,
-                receiver: receiver,
-                type: 'set',
-            }, 'set-when-diff')
+            // console.log({
+            //     target: target,
+            //     key: key,
+            //     value: newValue,
+            //     oldValue: oldValue,
+            //     receiver: receiver,
+            //     type: 'set',
+            // }, 'set-when-diff')
             runReactionsFromTargetKey({
                 target: target,
                 key: key,
