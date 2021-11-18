@@ -9,4 +9,4 @@
 - demo_03 koa-router 使用
 - demo_04 koa2 中间件机制（洋葱模型）
 - demo_05 手动实现的 bodyparser
-- demo_06 手动实现的 bodyparser
+- demo_06 中间件 koa-body
