@@ -1,0 +1,58 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-09-08 21:23:33
+ * @Description: file content
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>手动实现promise</title>
+        <!-- <script type='module' src="./index.js" ></script> -->
+        <style>
+            html, body { height: 100%; overflow: auto; }
+        </style>
+        <!-- 运行es6语法 -->
+        <script type='module'>
+            // import './demo_proxy.js'
+            // import './demo_proxy_auto.js'
+            import './demo_proxy_observe.js'
+            // import './demo_dataTree.js'
+            import { observable, autorun, observe, batch } from './index.js'
+            // console.log(RawProxy1, 'RawProxy1')
+             const obs = observable({
+                    aa: {
+                        bb: 123,
+                    },
+                    cc: {
+                        dd: 124,
+                    },
+                })
+                autorun(() => {
+                    // 首次的时候会触发，变化的时候也会触发
+                    // 总共触发2次
+                    console.log('autorun1', obs.aa.bb)
+                })
+
+                //   const dispose = observe(obs, (change) => {
+                //         console.log('observe1', change)
+                //     })
+
+                //数据进行set操作的时候，就会触发
+                // console.log(obs.aa.bb)
+                obs.aa.bb = 99
+                obs.aa.bb = 66
+                
+                // obs.aa.bb = 888
+                // obs.aa.bb = 666
+                batch(() => {
+                    obs.aa.bb = 888
+                    obs.aa.bb = 666
+                })
+                // console.log(obs)
+        </script>
+    </head>
+    <body>
+        
+    </body>
+</html>
