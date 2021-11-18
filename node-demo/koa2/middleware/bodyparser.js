@@ -4,27 +4,29 @@
  * @Description: file content
  */
 
-function listen(ctx){
-  let str = '';
-  return new Promise((resolve,reject) => {
-    ctx.req.addListener('data',(data)=>{
+function listen(ctx) {
+  let str = "";
+  return new Promise((resolve, reject) => {
+    ctx.req.addListener("data", (data) => {
       str += data;
     });
-    ctx.req.addListener('end',()=>{
+    ctx.req.addListener("end", () => {
       const res = jsonBodyparser(str);
       resolve(res);
     });
-  }); 
+  });
 }
 
-function jsonBodyparser(str){
+function jsonBodyparser(str) {
   let parseBody = {};
-  let strArr = str.split('&');
-  for(let [index,item] of strArr.entries()){
+  let strArr = str.split("&");
+  console.log(strArr, "strArr-=-");
+  for (let [index, item] of strArr.entries()) {
     const itemArr = item.split("=");
-    parseBody[itemArr[0]] = itemArr[1];    
+    parseBody[itemArr[0]] = itemArr[1];
   }
-  return parseBody; 
+  console.log(parseBody, "parseBody");
+  return parseBody;
 }
 
 module.exports = () => {
@@ -32,5 +34,5 @@ module.exports = () => {
     bodyParser = await listen(ctx);
     ctx.request.body = bodyParser;
     await next();
-  }
-}
+  };
+};
