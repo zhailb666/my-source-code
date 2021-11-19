@@ -10,12 +10,14 @@ const path = require("path");
 const router = require("koa-router")(); //注意：引入的方式
 const axios = require("axios");
 const koabody = require("koa-body");
-require('./models/db')
+require("./models/db");
 
-const Student = require('./models/Student')
+const Student = require("./models/Student");
+// require("./models/Student");
+
+const mongoose = require("mongoose");
 
 const app = new Koa();
-
 
 router.get("/", async (ctx, next) => {
   const res = await axios({
@@ -35,21 +37,37 @@ router.get("/", async (ctx, next) => {
 });
 
 router.get("/create", async (ctx, next) => {
-    const student = new Student({
-      name: 'zlb002',
-      age: 18,
-      sex: 1,
-    })
-    await student.save()
-    ctx.body = '创建成功';
+  const student = new Student({
+    name: "zlb003",
+    age: 18,
+    sex: 1,
+    extends: {
+      a: 12,
+      b: 3,
+    },
+  });
+  await student.save();
+  ctx.body = "创建成功";
+});
+
+router.get("/create2", async (ctx, next) => {
+  // const Student2 = mongoose.model("Student", {});
+  const Student2 = mongoose.model("Student");
+  const student = new Student2({
+    name: "zlb00_3",
+    age: 18,
+    sex: 1,
+    a: 1,
+  });
+  await student.save();
+  ctx.body = "创建成功";
 });
 
 router.get("/findAll", async (ctx, next) => {
-    const res = await Student.find({}).exec()
-    console.log(res)
-    ctx.body = res;
+  const res = await Student.find({}).exec();
+  console.log(res);
+  ctx.body = res;
 });
-
 
 router.post("/user/login", async (ctx) => {
   console.log(ctx.request.body); //{ aid: '123' }  //获取动态路由的数据
