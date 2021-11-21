@@ -69,6 +69,44 @@ router.get("/findAll", async (ctx, next) => {
   ctx.body = res;
 });
 
+router.get("/findOne", async (ctx, next) => {
+  const { id } = ctx.query
+  try {
+    const res = await Student.find({_id: id}).exec();
+    console.log(res.req);
+    ctx.body = res;
+  }catch(e) {
+    ctx.body=`id=${id}:查询失败`
+  }
+});
+
+router.get("/update", async (ctx, next) => {
+  const res = await Student.updateMany({}, {name: '亦风'}).exec();
+  console.log(res);
+  ctx.body = res;
+});
+
+router.get("/updateOne", async (ctx, next) => {
+  const { id } = ctx.query
+  const res = await Student.updateOne({_id: id}, {sex: false}).exec();
+  console.log(res);
+  ctx.body = res;
+});
+
+router.get("/findByIdAndDelete", async (ctx, next) => {
+  const { id } = ctx.query
+  const res = await Student.findByIdAndDelete(id).exec();
+  console.log(res);
+  ctx.body = res;
+});
+
+router.get("/findByIdAndRemove", async (ctx, next) => {
+  const { id } = ctx.query
+  const res = await Student.findByIdAndRemove(id).exec();
+  console.log(res);
+  ctx.body = res;
+});
+
 router.post("/user/login", async (ctx) => {
   console.log(ctx.request.body); //{ aid: '123' }  //获取动态路由的数据
   const {
