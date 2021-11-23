@@ -12,6 +12,7 @@ const path = require('path')
 const session = require('koa-session')
 const jwt = require('koa-jwt')
 const jsonwebtoken = require('jsonwebtoken')
+const axios = require("axios");
 
 const app = new Koa();
 
@@ -41,6 +42,19 @@ router.get('/ses',  (ctx, next) => {
   ctx.body = n + ' views';
 })
 
+router.get('/ses/afe',  async (ctx, next) => {
+  const res = await axios({
+    method: "GET",
+    url: "http://localhost:3000/news",
+    headers: {
+      "Content-Type": "application/json",
+      "authorization": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiemxiIiwiaWQiOjEwMCwiaWF0IjoxNjM3Njc1NTA0LCJleHAiOjE2Mzc2NzU2MjR9.E3PWo88bk45wEj_kiFbS2zYzBfIDLv_0b7-PHK6Vmno'
+    },
+  });
+  console.log(res.data, "res");
+  ctx.body = res.data || "Hello koa";
+})
+
 const USER = {
   username: 'zlb',
   password: '123456',
@@ -49,7 +63,7 @@ const USER = {
 
 router.get('/api/login',  (ctx, next) => {
     const { session } = ctx
-    const { username, id }  = ctx.request.params
+    const { username, id }  = ctx.request.query
     console.log(username, id)
     const ct = jsonwebtoken.sign(
       { name: USER.username, id: USER.id },  // 加密userToken
@@ -58,8 +72,8 @@ router.get('/api/login',  (ctx, next) => {
     )
     console.log(ct, 'token')
     ctx.cookies.set('token', ct, {httpOnly: false}); // browne -> document.cookie
-    session[token] = user._id
-    session[`${token}_uname`] = user.realname
+    session[ct] = USER.id
+    session[`${ct}_uname`] = USER.username
     ctx.body = {
         code: 200,
         msg: '登录成功',
@@ -69,6 +83,7 @@ router.get('/api/login',  (ctx, next) => {
 
 
 router.get('/news', (ctx,next)=>{
+  console.log(121312)
   ctx.body="新闻page"
 });
 
@@ -86,8 +101,8 @@ router.get('/news/:aid',async (ctx)=>{
 
 const SESS_CONFIG = {
   key: 'fe-ci:sess:' + 'dev', // cookie键名
-  maxAge: 86400000, // 有效期，默认一天
-  httpOnly: true, // 仅服务器修改
+  maxAge: 600, // 有效期，默认一天 ms
+  httpOnly: true, // cookie是否只有服务器端可以访问 httpOnly or not (default true)
   signed: true // 签名cookie
 }
 app.keys = ['newest secret key', 'older secret key'];
