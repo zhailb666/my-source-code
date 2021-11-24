@@ -13,6 +13,7 @@ const session = require('koa-session')
 const jwt = require('koa-jwt')
 const jsonwebtoken = require('jsonwebtoken')
 const axios = require("axios");
+const views = require('koa-views')
 
 const app = new Koa();
 
@@ -32,6 +33,17 @@ app.use(jwt({ secret: SECRET }).unless({
   // 登录接口不需要验证
   path: [/^\/api\/login/, /^\/ses/]
 }));
+
+// 页面模板
+app.use(
+  views(__dirname + '/views', {
+    map: { html: 'ejs' }
+  })
+)
+
+router.get('/ses/d',  async (ctx, next) => {
+   await ctx.render('index', {title: '哈哈'})
+})
 
 router.get('/ses',  (ctx, next) => {
   ctx.body="Hello koa";

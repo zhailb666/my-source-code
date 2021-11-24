@@ -13,10 +13,13 @@
 - demo_06 中间件 koa-body
 - demo_07 mongoose 简单的 增删改查 功能； mongoose.model("Student") 注册一次后不能重复注册相同的 key
 - demo_08 koa-static 服务器静态资源加载
-
+- demo_09 koa-session koa-jwt jsonwebtoken 服务器静态资源加载
+- demo_10 koa-views ejs
 
 other:
-中间件 koa2-cors 解决跨域问题不做演示了
+- koa2-cors 解决跨域问题不做演示了
+- koa2-helmet 处理网址安全 https://zhuanlan.zhihu.com/p/268891086
+- koa-compress 从服务器发送响应时，如果使用压缩，则可以大大缩短加载时间 https://iowiki.com/koajs/koajs_compression.html
 ```
 var Koa = require('koa');
 var cors = require('koa2-cors');
