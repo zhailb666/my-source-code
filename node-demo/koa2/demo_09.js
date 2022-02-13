@@ -113,7 +113,7 @@ router.get('/news/:aid',async (ctx)=>{
 
 const SESS_CONFIG = {
   key: 'fe-ci:sess:' + 'dev', // cookie键名
-  maxAge: 600, // 有效期，默认一天 ms
+  maxAge: 600000, // 有效期，默认一天 ms
   httpOnly: true, // cookie是否只有服务器端可以访问 httpOnly or not (default true)
   signed: true // 签名cookie
 }
