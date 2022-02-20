@@ -29,6 +29,7 @@ app.use(favicon(__dirname + '/static/favicon.ico'));
 
 const SECRET = 'zlb666';
 
+// 仅对token进行验证
 app.use(jwt({ secret: SECRET }).unless({
   // 登录接口不需要验证
   path: [/^\/api\/login/, /^\/ses/]
