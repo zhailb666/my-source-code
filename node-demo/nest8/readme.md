@@ -8,6 +8,7 @@
   用nest/cli创建项目 nest new  项目名
 - demo_02 koa swagger 生成 RESTful API 文档
 - demo_03 使用mongoose 进行curd
+- demo_04 对03的优化 引入typeorm操作表
 
 other:
 

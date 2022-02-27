@@ -28,7 +28,7 @@ export class UsersService {
     return this.usersModel.find({ _id: id });
   }
 
-  update(id: String, updateUserDto: UpdateUserDto) {
+  update(id: String, updateUserDto: UpdateUserDto): any {
     return this.usersModel.updateOne({ _id: id }, updateUserDto).exec();
   }
 

@@ -19,7 +19,9 @@ export class UsersController {
 
   @Post('create')
   create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
+    return this.usersService.create(createUserDto).then((ele) => {
+      console.log(ele, 'sava------------');
+    });
   }
 
   @Get('findAll')
@@ -27,18 +29,23 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
+  @Get('findSome')
+  findSome() {
+    return this.usersService.findSome();
+  }
+
   @Get('findOne/:id')
-  findOne(@Param('id') id: String) {
+  findOne(@Param('id') id: string) {
     return this.usersService.findOne(id);
   }
 
   @Patch('update/:id')
-  update(@Param('id') id: String, @Body() updateUserDto: UpdateUserDto): any {
+  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(id, updateUserDto);
   }
 
   @Delete('remove/:id')
-  remove(@Param('id') id: String) {
+  remove(@Param('id') id: string) {
     console.log(id, 'id---');
     return this.usersService.remove(id);
   }
