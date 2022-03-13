@@ -7,7 +7,7 @@
 ### 01-tsx: ts语法
 - 01-tsx: tsc命令编译 ts文件
 npm install -g typescript   执行tsc命名
-tsc 01-tsx.ts
+tsc 01-tsx.ts -w
 
 - 02-tsconfig: ts配置文件 & 与一些基本配置
 tsc --init 生成 tsconfig.json
@@ -22,4 +22,7 @@ json文件的基本配置:
   }
 }
 用node显示打印信息 node dist/demo.js
+
+-04-declare:
+declare的使用
 

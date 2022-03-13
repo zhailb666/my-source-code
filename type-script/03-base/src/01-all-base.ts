@@ -47,7 +47,6 @@ function error(message: string): never {
 }
 
 // 10、object 表示非原始类型，也就是除 number，string，boolean，symbol，null或undefined 之外的类型
-declare function create(o: object | null): void;
 declare var jQuery: (selector: string) => any;
 
 // jQuery('#foo');
