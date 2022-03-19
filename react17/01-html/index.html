@@ -1,0 +1,40 @@
+<!--
+ * @Author: your name
+ * @Date: 2022-03-14 21:08:15
+ * @Description: file content
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <!--  metadata goes here   -->
+    <title>Example</title>
+</head>
+<script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+<body>
+    This is the <code>content</code>.
+    <div id="root"></div>
+</body>
+<script type="text/babel">
+    class App extends React.Component {
+            constructor(props) {
+                super(props)
+            }
+            render() {
+                return (
+                    <h1>
+                        Hello { this.props.name } !
+                        <div>{this.props.children}</div>
+                    </h1>
+                )
+            }
+    }
+    const element = React.createElement(
+            'h1',
+            { className: 'greeting' },
+            ['Hello, world!----zlb', '我爱中国🇨🇳']
+    );
+    ReactDOM.render(<App name="hello world" >{ element}</App>, document.getElementById('root'))
+</script>
+</html>

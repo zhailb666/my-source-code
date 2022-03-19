@@ -1,0 +1,183 @@
+<!--
+ * @Author: your name
+ * @Date: 2022-03-14 21:08:15
+ * @Description: file content
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <!--  metadata goes here   -->
+    <title>Example</title>
+</head>
+<script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+<body>
+    This is the <code>content</code>.
+    <div id="root"></div>
+</body>
+<script type="text/babel">
+
+    class Child extends React.Component {
+        static dName = 'child'
+        dName = 'child'
+        constructor(props) {
+            super(props);
+            this.state = { date: new Date(), count: 0 };
+            console.log(`${this.dName}-constructor-挂载时`)
+        }
+
+         static getDerivedStateFromProps(props, state) {
+            console.log(props, state)
+            console.log(`${Child.dName}-getDerivedStateFromProps`)
+            return null
+        }
+
+        getSnapshotBeforeUpdate(prevProps, prevState) {
+            console.log(prevProps, prevState, `${this.dName}-getSnapshotBeforeUpdate`)
+             return null
+        }
+
+        componentDidMount() {
+            console.log(`${this.dName}-componentDidMount-挂载时`)
+            // this.timerID = setInterval(
+            //     () => this.tick(),
+            //     1000
+            // );
+        }
+
+        shouldComponentUpdate() {
+            console.log(`${this.dName}-shouldComponentUpdate-setSate`)
+            return true;
+        }
+
+        // componentWillMount() {
+        //     console.log(`${this.dName}-componentWillMount-挂载时`)
+        // }
+
+        // componentWillReceiveProps(props, preProps) {
+        //     console.log(`${this.dName}-componentWillReceiveProps`)
+        // }
+
+        // componentWillUpdate() {
+        //     console.log(`${this.dName}-componentWillUpdate-forceUpdate`)
+        // }
+
+        componentDidUpdate(prevProps, prevState, snapshot) {
+            console.log(prevProps, prevState, snapshot)
+            console.log(`${this.dName}-componentDidUpdate`)
+        }
+
+        componentWillUnmount() {
+            console.log(`${this.dName}-componentWillUnmount`)
+            clearInterval(this.timerID);
+        }
+
+        tick() {
+            this.setState({
+                date: new Date()
+            });
+        }
+
+        render() {
+            console.log(`${this.dName}-render`)
+            const { pCount } = this.props;
+            let { count } = this.state
+            return (
+                <div>
+                   <h1 onClick={ () => { this.setState({ count: ++count }) } }>{ `${this.dName}setState` }</h1>
+                    <h1 onClick={ () => { this.forceUpdate(() => {}) } }>{ `${this.dName}forceUpdate` }</h1>
+                    <h2>It is { this.state.date.toLocaleTimeString() }.</h2>
+                    <h2>{ count }</h2>
+                    <p>{ pCount }</p>
+                </div>
+            );
+        }
+    }
+
+    class Parent extends React.Component {
+        static dName = 'parent'
+        dName = 'parent'
+        constructor(props) {
+            super(props);
+            this.state = { date: new Date(), count: 0 };
+            console.log(`${this.dName}-constructor-挂载时`)
+        }
+        static getDerivedStateFromProps(props, state) {
+             console.log(props, state)
+             console.log(`${Parent.dName}-getDerivedStateFromProps`)
+            return null
+        }
+        getSnapshotBeforeUpdate(prevProps, prevState) {
+            console.log(prevProps, prevState, `${this.dName}-getSnapshotBeforeUpdate`)
+            return null
+            // ...
+        }
+
+        componentDidMount() {
+            console.log(`${this.dName}-componentDidMount-挂载时`)
+            // this.timerID = setInterval(
+            //     () => this.tick(),
+            //     1000
+            // );
+        }
+
+        // componentWillMount() {
+        //     console.log(`${this.dName}-componentWillMount-挂载时`)
+        // }
+
+        // componentWillReceiveProps(props, preProps) {
+        //     console.log(`${this.dName}-componentWillReceiveProps`)
+        // }
+
+        // componentWillUpdate() {
+        //     console.log(`${this.dName}-componentWillUpdate-forceUpdate`)
+        // }
+
+        shouldComponentUpdate() {
+            console.log(`${this.dName}-shouldComponentUpdate-setSate`)
+            return true;
+        }
+
+        componentDidUpdate(prevProps, prevState, snapshot) {
+            console.log(prevProps, prevState, snapshot)
+            console.log(`${this.dName}-componentDidUpdate`)
+        }
+
+        componentWillUnmount() {
+            console.log(`${this.dName}-componentWillUnmount`)
+            clearInterval(this.timerID);
+        }
+
+        tick() {
+            this.setState({
+                date: new Date()
+            });
+        }
+
+        componentDidCatch(error, info) {
+             console.log(error, info, `${this.dName}-componentDidCatch`)
+        }
+
+        render() {
+            console.log(`${this.dName}-render`)
+            let { count } = this.state
+            return (
+                <div>
+                    <Child pCount={ count }/>
+                    <h1 onClick={ () => { this.setState({ count: ++count }) } }>{`${this.dName}setState`}</h1>
+                    <h1 onClick={ () => { this.forceUpdate(()=>{}) } }>{ `${this.dName}forceUpdate` }</h1>
+                    <h2>It is { this.state.date.toLocaleTimeString() }.</h2>
+                    <h2>{ count }</h2>
+                </div>
+            );
+        }
+    }
+
+
+        ReactDOM.render(
+            <Parent />,
+            document.getElementById('root')
+        );
+</script>
+</html>

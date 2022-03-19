@@ -1,7 +1,7 @@
 ### 每周更新 start 2022年
 ### 2022年
 - 03-13 整理了typeScript declare, 函数，泛型，装饰器功能(见：type-script)；
-- 
+- 03-19 新增目录http-all研究http相关问题，这次整理了下http缓存；
 - 
 
 ### 前端知识体系
