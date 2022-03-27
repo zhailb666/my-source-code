@@ -1,8 +1,13 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-08-12 09:41:26
+ * @Description: file content
+-->
 ### 每周更新 start 2022年
 ### 2022年
 - 03-13 整理了typeScript declare, 函数，泛型，装饰器功能(见：type-script)；
 - 03-19 新增目录http-all研究http相关问题，这次整理了下http缓存；
-- 
+- 03-27 新增node-demo/01-event-loop 研究了下node事件循环；新增http-method/* 研究了浏览器options请求
 
 ### 前端知识体系
 [前端知识体系](https://juejin.im/post/6860776234469720072)

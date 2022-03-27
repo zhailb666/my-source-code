@@ -1,0 +1,75 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-11-21 19:23:51
+ * @Description: file content
+-->
+<!-- https://juejin.cn/post/6844903821634699277 -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>文档标题</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        const host = 'http://localhost:3000'
+        var t = ''
+        new Promise((resolve, reject) => {
+            axios({
+                method: "GET",
+                url: `${host}/api/login?id=2323&username=zlb`,
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }).then((res) => {
+                console.log(res.data, 'res-0')
+                const { token } = res.data
+                t = token
+                axios({
+                    method: "GET",
+                    url: `${host}/news`,
+                    // headers: {
+                    //     "Content-Type": "application/json",
+                    //     "authorization": "Bearer " + token
+                    // },
+                });
+            })
+        })
+
+        //  axios({
+        //         method: "OPTIONS",
+        //         url: "/",
+        //     }).then((res) => {
+        //        console.log(res, 'res-=-')
+        //     })
+         axios({
+                method: "DELETE",
+                url: `${host}/delete`,
+            }).then((res) => {
+               console.log(res, 'res-=-')
+            })
+        
+        function again() {
+            axios({
+                method: "GET",
+                url: `${host}/news`,
+                headers: {
+                    "Content-Type": "application/json",
+                    "authorization": "Bearer " + t
+                },
+            });
+        }
+    </script>
+</head>
+<style>
+    .title {
+        color: red;
+    }
+</style>
+
+<body>
+    <div class="title">hello world!</div>
+    <div onClick='again()'>hello</div>
+</body>
+
+</html>
