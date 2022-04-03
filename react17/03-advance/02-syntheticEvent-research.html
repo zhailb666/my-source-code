@@ -1,0 +1,126 @@
+<!--
+ * @Author: your name
+ * @Date: 2022-03-14 21:08:15
+ * @Description: file content
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <!--  metadata goes here   -->
+    <title>Example</title>
+</head>
+<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+<body>
+    This is the <code>content</code>.
+    <div id="root"></div>
+</body>
+<script type="text/babel">
+    class Parent extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = { date: new Date(), count: 0 };
+            this.parentNode = React.createRef()
+            this.childNode = React.createRef()
+        }
+
+        componentDidMount() {
+            this.root = document.getElementById('root')
+            this._addEventListener()
+        }
+
+        componentDidCatch(error, info) {}
+
+        _addEventListener() {
+            this.root.addEventListener('click', (e) => {
+                this.capture('root', '原生')
+                this.dispatchEvent(e, true)
+            },true)
+
+            this.root.addEventListener('click', (e) => {
+                this.bubble('root', '原生')
+                this.dispatchEvent(e, false)
+            })
+
+            this.parentNode.current.addEventListener('click',() => {
+                this.bubble('父元素', '原生')
+            })
+            this.childNode.current.addEventListener('click',() => {
+                this.bubble("子元素", '原生')
+            })
+            this.parentNode.current.addEventListener('click',() => {
+                this.capture('父元素', '原生')
+            },true)
+            this.childNode.current.addEventListener('click',() => {
+                this.capture("子元素", '原生')
+            },true)
+            
+            this.parentNode.current.onClick = () => {
+                this.bubble('父元素', 'React')
+            }
+            this.childNode.current.onClick = () => {
+                this.bubble("子元素", 'React')
+            }
+            this.parentNode.current.onClickCapture = () => {
+                this.capture('父元素', 'React')
+            }
+            this.childNode.current.onClickCapture = () => {
+                this.capture("子元素", 'React')
+            }
+ 
+
+            document.addEventListener('click', (e) => {
+                this.bubble('document', '原生')
+            })
+            document.addEventListener('click', (e) => {
+                this.capture('document', '原生')
+            }, true)
+        }
+
+        dispatchEvent(event, useCapture) {
+            let paths = [];
+            let current = event.target;
+            while(current) {
+                paths.push(current)
+                current = current.parentNode
+            }
+
+            let v = ''
+            if(useCapture) {
+                let capList = [...paths]
+                while (v = capList.pop()) {
+                    v.onClickCapture && v.onClickCapture()
+                }
+            } else {
+                let bubbles = [...paths]
+                while (v = bubbles.shift()) {
+                    v.onClick && v.onClick()
+                }
+            }
+
+        }
+        
+        capture(from, type = 'React') {
+            console.log(`${from}${type}捕获`)
+        }
+        bubble(from, type = 'React') {
+            console.log(`${from}${type}冒泡`)
+        }
+
+        render() {
+            let { count } = this.state
+            return (
+                <div ref={this.parentNode}>
+                    <h1 ref={ this.childNode }>{`click`}子元素: v17</h1>
+                </div>
+            );
+        }
+    }
+
+    ReactDOM.render(
+        <Parent />,
+        document.getElementById('root')
+    );
+</script>
+</html>

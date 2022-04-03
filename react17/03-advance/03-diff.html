@@ -1,0 +1,84 @@
+<!--
+ * @Author: your name
+ * @Date: 2022-03-14 21:08:15
+ * @Description: file content
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <!--  metadata goes here   -->
+    <title>Example</title>
+</head>
+<script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+<body>
+    This is the <code>content</code>.
+    <div id="root"></div>
+</body>
+<script type="text/babel">
+    class Parent extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = { 
+                persons: [1,2].map((v) => {
+                    return { id: v, name: `name${v}`, age: 18 + v}
+                })
+             };
+        }
+
+        componentDidMount() {}
+
+        componentDidCatch(error, info) {}
+
+        add = (unshift) => {
+            const { persons } = this.state
+            const len = persons.length + 1
+
+            if(unshift) {
+                this.setState({
+                    persons: [{ id: len, name: `name${len}`, age: 18 + len },...persons]
+                })
+            } else {
+                this.setState({
+                    persons: [...persons, { id: len, name: `name${len}`, age: 18 + len }]
+                })
+            }
+           
+        }
+
+        render() {
+            let { persons } = this.state
+            return (
+                <div className='parent'>
+                    <button style={{display: 'block'}} onClick={() => { this.add(true) }}>添加shift- 尾部添加</button>
+                    <button style={ { display: 'block', marginTop: '10px' } } onClick={this.add}>添加push- 头部添加</button>
+                    <h3>使用index(索引值) 作为key </h3>
+                    <div className='key-map'>
+                        {
+                            persons.map((item, index) => {
+                                return <div key={index}>{item.name}---{ item.age} <input type='text' /></div>
+                            })
+                        }
+                    </div>
+                    <hr/>
+                    <hr/>
+                    <h3>使用id(数据唯一的标识) 作为key </h3>
+                    <div className='key-map'>
+                        {
+                            persons.map((item, index) => {
+                                return <div key={ item.id }>{ item.name }---{ item.age } <input type='text' /></div>
+                            })
+                        }
+                    </div>
+                </div>
+            );
+        }
+    }
+
+    ReactDOM.render(
+        <Parent />,
+        document.getElementById('root')
+    );
+</script>
+</html>
