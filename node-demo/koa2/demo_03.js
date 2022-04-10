@@ -17,7 +17,7 @@ app.use(async (ctx, next) => {
       ctx.response.status = 200
       ctx.response.body = 'list'
     } else {
-    	ctx.throw(404, 'Not found999') // 404
+    	// ctx.throw(404, 'Not found999') // 404
     }
   await next()
 })

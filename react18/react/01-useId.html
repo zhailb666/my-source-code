@@ -1,0 +1,51 @@
+<!--
+ * @Author: your name
+ * @Date: 2022-03-14 21:08:15
+ * @Description: file content
+-->
+
+<!--
+ * @Author: your name
+ * @Date: 2022-03-14 21:08:15
+ * @Description: file content
+-->
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <!--  metadata goes here   -->
+    <title>React.useId</title>
+</head>
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="../libs/react-dom-client.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+
+<body>
+    <div id="root"></div>
+</body>
+<script type="text/babel">
+    let preId = null
+    function Parent() {
+        let [count, setCount] = React.useState(0)
+        const id = React.useId();
+        if (preId) {
+            console.log('useId是否相同',id == preId)
+        } else {
+            preId = id
+        }
+        console.log('useId的值', id)
+        console.log(`action:useState`, `count:${count
+}`)
+        return (
+            <div onClick={() => { setCount(++count)}  }>
+                <label>useId前后值对比{ count }, id_{id}</label>
+            </div>
+        );
+    }
+
+    let root = ReactDOMClient.createRoot(document.getElementById('root'));
+    root.render(<Parent />)
+</script>
+
+</html>

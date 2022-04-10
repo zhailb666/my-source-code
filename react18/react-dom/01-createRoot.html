@@ -1,0 +1,89 @@
+<!--
+ * @Author: your name
+ * @Date: 2022-03-14 21:08:15
+ * @Description: file content
+-->
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <!--  metadata goes here   -->
+    <title>createRoot</title>
+</head>
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="../libs/react-dom-client.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+
+<body>
+    This is the <code>content</code>.
+    <div id="root"></div>
+</body>
+<script type="text/babel">
+    class Parent extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = { date: new Date(), count: 0 };
+        }
+
+        componentDidMount() {
+            this._addEventListener()
+            this._setState()
+        }
+
+        componentDidCatch(error, info) {
+        }
+
+        _setState() {
+            console.log(`_setState前：${this.state.count}`)
+            this.setState({ count: this.state.count + 1 })
+            this.setState({ count: this.state.count + 1 })
+            this.setState({ count: this.state.count + 1 })
+            this.setState({ count: this.state.count + 1 })
+            this.setState({ count: this.state.count + 1 })
+            console.log(`_setState后：${this.state.count}`)
+        }
+
+        _setStateWithTimer() {
+            setTimeout(() => {
+                console.log(`_setStateWithSetTimeout前：${this.state.count}`)
+                this.setState({ count: this.state.count + 1 })
+                this.setState({ count: this.state.count + 1 })
+                this.setState({ count: this.state.count + 1 })
+                this.setState({ count: this.state.count + 1 })
+                this.setState({ count: this.state.count + 1 })
+                console.log(`_setStateWithSetTimeout后：${this.state.count}`)
+            }, 0)
+        }
+
+        _addEventListener() {
+            this.refNode.addEventListener('click', () => {
+                console.log(`_addEventListener前：${this.state.count}`)
+                this.setState({ count: this.state.count + 1 })
+                this.setState({ count: this.state.count + 1 })
+                this.setState({ count: this.state.count + 1 })
+                this.setState({ count: this.state.count + 1 })
+                this.setState({ count: this.state.count + 1 })
+                console.log(`_addEventListener后：${this.state.count}`)
+            })
+        }
+
+        render() {
+            let { count } = this.state
+            return (
+                <div>
+                    <h1 onClick={ () => { this._setState() } }>{ `setState` }复合事件</h1>
+                    <h1 onClick={ () => { this._setStateWithTimer() } }>{ `setStateWithSetTimeout` }</h1>
+                    <h2 ref={ (node) => this.refNode = node }>addEventListener</h2>
+                    <h2>count值：{ count }</h2>
+                </div>
+            );
+        }
+    }
+
+
+    let root = ReactDOMClient.createRoot(document.getElementById('root'));
+        root.render(<Parent />)
+</script>
+
+</html>
