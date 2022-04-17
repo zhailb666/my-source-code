@@ -1,0 +1,107 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-11-21 19:23:51
+ * @Description: file content
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>文档标题</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        var t = ''
+        new Promise((resolve, reject) => {
+            axios({
+                method: "GET",
+                url: "/api/login?id=2323&username=zlb",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }).then((res) => {
+                console.log(res.data, 'res-0')
+                const { token } = res.data
+                t = token
+                axios({
+                    method: "GET",
+                    url: "/news",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "authorization": "Bearer " + token
+                    },
+                });
+            })
+        })
+
+                 function* allAjax() {
+                    // try {
+                        yield axios({
+                            method: "GET",
+                            url: "/api/login?id=2323&username=zlb",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                        }),
+                            yield axios({
+                                method: "GET",
+                                url: "/api/login?id=2323&username=zlb",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                            })
+                        yield new Promise((resolve) => resolve({ data: { a: b } })).catch((err) => {
+                            console.log(err, 'error')
+                        })
+                }
+
+        const g = allAjax()
+        // g.throw('from it')
+        try {
+            g.throw('from it'); // => out error from it
+        } catch (err) {
+            console.log('out error: ' + err);
+        }
+        function doGg() {
+            try {
+                g.next().value.then((v) => {
+                    console.log(v.data, 'next-then')
+                })
+            } catch(e) {
+                console.log(e)
+            } 
+
+        }
+     
+        axios({
+            method: "DELETE",
+            url: "/delete",
+        }).then((res) => {
+            console.log(res, 'res-=-')
+        })
+        
+        function again() {
+            axios({
+                method: "GET",
+                url: "/news",
+                headers: {
+                    "Content-Type": "application/json",
+                    "authorization": "Bearer " + t
+                },
+            });
+        }
+    </script>
+</head>
+<style>
+    .title {
+        color: red;
+    }
+</style>
+
+<body>
+    <div class="title">hello world!</div>
+    <div onClick='again()'>clickMe!</div>
+    <div onClick='doGg()'>hello</div>
+</body>
+
+</html>

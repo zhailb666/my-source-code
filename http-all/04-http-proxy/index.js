@@ -1,5 +1,10 @@
 /*
  * @Author: your name
+ * @Date: 2022-04-17 16:48:37
+ * @Description: file content
+ */
+/*
+ * @Author: your name
  * @Date: 2021-11-17 21:25:40
  * @Description: koa-router使用
  */
@@ -9,10 +14,9 @@ const router = require('koa-router')();  //注意：引入的方式
 const static = require('koa-static')
 const favicon = require('koa-favicon');
 const path = require('path')
-const jwt = require('koa-jwt')
-const axios = require("axios");
 const koabody = require("koa-body");
-const cors = require('koa2-cors');
+const { createProxyMiddleware } = require('http-proxy-middleware');
+const k2c = require('koa2-connect');
 
 const app = new Koa();
 
@@ -26,36 +30,10 @@ app.use(static(
 app.use(favicon(__dirname + '/static/favicon.ico'));
 
 
-router.get('/ses/d',  async (ctx, next) => {
-   await ctx.render('index', {title: '哈哈'})
-})
-
-router.get('/ses',  (ctx, next) => {
-  ctx.body="Hello koa";
-    if (ctx.path === '/favicon.ico') return;
-    console.log(ctx.session, 'ctx.session')
-  let n = ctx.session.views || 0;
-  ctx.session.views = ++n;
-  ctx.body = n + ' views';
-})
-
-router.get('/ses/afe',  async (ctx, next) => {
-  const res = await axios({
-    method: "GET",
-    url: "http://localhost:3000/news",
-    headers: {
-      "Content-Type": "application/json",
-      "authorization": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiemxiIiwiaWQiOjEwMCwiaWF0IjoxNjM3Njc1NTA0LCJleHAiOjE2Mzc2NzU2MjR9.E3PWo88bk45wEj_kiFbS2zYzBfIDLv_0b7-PHK6Vmno'
-    },
-  });
-  console.log(res.data, "res");
-  ctx.body = res.data || "Hello koa";
-})
-
 
 router.get('/api/login',  (ctx, next) => {
     const { username, id }  = ctx.request.query
-    console.log(username, id, ctx.request.query)
+    console.log(username, id, ctx.request.query, '/api/login_get')
     ctx.body = {
         code: 200,
         msg: '登录成功',
@@ -74,18 +52,16 @@ router.delete('/delete', (ctx,next)=>{
   ctx.body="新闻page"
 });
 
-
-// app.use(cors())
-app.use(async (ctx, next)=> {
-  ctx.set('Access-Control-Allow-Origin', '*');
-  ctx.set('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
-  ctx.set('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
-  if (ctx.method == 'OPTIONS') {
-    ctx.body = 200; 
-  } else {
-    await next();
+app.use(async (ctx,next) => {
+  if(ctx.url.startsWith('/api')) {
+    ctx.respond = false
+    await k2c(createProxyMiddleware({
+      target: "http://localhost:8080",
+      changeOrigin: true
+    }))(ctx, next)
   }
-});
+  next()
+})
 
 app.use(
   koabody({
@@ -104,3 +80,4 @@ app.use(router.allowedMethods()); // 作用： 这是官方文档的推荐用法
 app.listen(3000,()=>{
   console.log('starting at port 3000');
 });
+
