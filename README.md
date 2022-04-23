@@ -16,6 +16,9 @@
 - **04-17**【
 <a href='https://github.com/zhailb666/my-source-code/tree/master/http-all/04-http-proxy'>1、http-proxy-middleware 服务代理使用</a>, <a href='https://github.com/zhailb666/my-source-code/tree/master/interview/2-calculate.js'>2、object与基本类型运算(隐式转换)</a>】
 
+- **04-23**【
+<a href='https://github.com/zhailb666/my-source-code/tree/master/a-nginx'>1、nginx反向代理与负载均衡实践</a>】
+
 ### 前端知识体系
 [前端知识体系](https://juejin.im/post/6860776234469720072)
 
