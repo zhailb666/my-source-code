@@ -1,0 +1,30 @@
+{
+    "name": "upload-file",
+    "version": "1.0.0",
+    "description": "文件上传",
+    "main": "ls",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "223344386",
+    "license": "ISC",
+    "dependencies": {
+        "fluent-ffmpeg": "^2.1.2",
+        "koa": "^2.8.2",
+        "koa-better-body": "^3.1.2",
+        "koa-body": "^4.1.1",
+        "koa-bodyparser": "^4.2.1",
+        "koa-convert": "^1.2.0",
+        "koa-json": "^2.0.2",
+        "koa-static": "^5.0.0",
+        "koa2": "^2.0.0-alpha.7",
+        "request": "^2.88.2",
+        "spark-md5": "^3.0.0",
+        "koa-router": "^10.1.1",
+        "nodemon": "^2.0.15"
+    },
+    "devDependencies": {
+        "chinese-address-generator": "^1.1.0",
+        "faker": "^5.5.3"
+    }
+}
