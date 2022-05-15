@@ -27,6 +27,8 @@
 - **05-08**【
 <a href='https://github.com/zhailb666/my-source-code/tree/master/uploadFiles'>1、大文件上传 & xhr.abort() 取消上传</a>】
 
+- **05-15** 【小程序云函数开发】
+
 ### 前端知识体系
 [前端知识体系](https://juejin.im/post/6860776234469720072)
 
