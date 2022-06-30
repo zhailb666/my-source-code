@@ -3,7 +3,7 @@
  * @Date: 2020-08-12 09:41:26
  * @Description: file content
 -->
-### 每周更新 start 2022年
+### keep study 2022年
 ### 2022年
 #### 3月
 - <a href='https://github.com/zhailb666/my-source-code/tree/master/type-script'>整理了typeScript declare, 函数，泛型，装饰器功能(见：type-script)</a>；
