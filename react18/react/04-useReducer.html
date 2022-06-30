@@ -1,0 +1,52 @@
+<!--
+ * @Author: your name
+ * @Date: 2022-06-23 19:02:52
+ * @Description: file content
+-->
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <!--  metadata goes here   -->
+    <title>React.useId</title>
+</head>
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="../libs/react-dom-client.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+
+<body>
+    <div id="root"></div>
+</body>
+<script type="text/babel">
+   const initialState = { count: 0 };
+
+    function reducer(state, action) {
+        switch (action.type) {
+            case 'increment':
+                return { count: state.count + 1 };
+            case 'decrement':
+                return { count: state.count - 1 };
+            default:
+                throw new Error();
+        }
+    }
+
+    function Counter() {
+        const [state, dispatch] = React.useReducer(reducer, initialState);
+        return (
+            <div>
+                Count: { state.count }
+                <button onClick={ () => dispatch({ type: 'decrement' }) }>-</button>
+                <button onClick={ () => dispatch({ type: 'increment' }) }>+</button>
+            </div>
+        );
+    }
+
+    let root = ReactDOMClient.createRoot(document.getElementById('root'));
+    root.render(<Counter />)
+</script>
+
+</html>
+
+<!-- 作用项目配置文件使用，非组件内部属性 -->

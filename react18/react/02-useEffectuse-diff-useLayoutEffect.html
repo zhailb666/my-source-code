@@ -1,0 +1,54 @@
+<!--
+ * @Author: your name
+ * @Date: 2022-06-23 18:27:37
+ * @Description: file content
+-->
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <!--  metadata goes here   -->
+    <title>React.useId</title>
+</head>
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="../libs/react-dom-client.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+
+<body>
+    <div id="root"></div>
+</body>
+<script type="text/babel">
+    let preId = null
+    function Parent() {
+        let [count, setCount] = React.useState(0)
+        React.useEffect(() => {
+            if(count == 0 ){
+               const n =  Date.now()
+               while(Date.now() - n < 200) {}
+
+                setCount(Math.random() * 10000)
+            }
+        }, [count]);
+        // 传给 useEffect 的函数会在浏览器完成布局与绘制之后，在一个延迟事件中被调用
+
+        // React.useLayoutEffect(() => {
+        //     if (count == 0) {
+        //         const n = Date.now()
+        //         while (Date.now() - n < 200) { }
+
+        //         setCount(Math.random() * 10000)
+        //     }
+        // }, [count]);
+        return (
+            <div onClick={() => { setCount(0)}  }>
+                <label>click change count:{ count }</label>
+            </div>
+        );
+    }
+
+    let root = ReactDOMClient.createRoot(document.getElementById('root'));
+    root.render(<Parent />)
+</script>
+
+</html>

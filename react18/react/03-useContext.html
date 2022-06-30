@@ -1,0 +1,68 @@
+<!--
+ * @Author: your name
+ * @Date: 2022-06-23 18:45:46
+ * @Description: file content
+-->
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <!--  metadata goes here   -->
+    <title>React.useId</title>
+</head>
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="../libs/react-dom-client.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+
+<body>
+    <div id="root"></div>
+</body>
+<script type="text/babel">
+   const themes = {
+        light: {
+            foreground: "#000000",
+            background: "#eeeeee"
+        },
+        dark: {
+            foreground: "#ffffff",
+            background: "#222222"
+        }
+    };
+
+    const ThemeContext = React.createContext(themes.light);
+
+    function App() {
+        const [v, setV] = React.useState(themes.light) 
+        return (
+            <ThemeContext.Provider value={ v }>
+                <Toolbar />
+                <div onClick={() => setV( v == themes.dark ? themes.light : themes.dark) } > click</div>
+            </ThemeContext.Provider>
+        );
+    }
+
+    function Toolbar(props) {
+        return (
+            <div>
+                <ThemedButton />
+            </div>
+        );
+    }
+
+    function ThemedButton() {
+        const theme = React.useContext(ThemeContext);
+        return (
+            <button style={ { background: theme.background, color: theme.foreground } }>
+                I am styled by theme context!
+            </button>
+        );
+    }
+
+    let root = ReactDOMClient.createRoot(document.getElementById('root'));
+    root.render(<App />)
+</script>
+
+</html>
+
+<!-- 作用项目配置文件使用，非组件内部属性 -->

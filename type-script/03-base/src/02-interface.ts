@@ -79,6 +79,11 @@ interface SelectableControl extends Control {
     select(): void;
 }
 
+type K = keyof SelectableControl
+
+type P = SelectableControl[K]
+
+
 
 // 6、一个类实现一个 或 多个 接口
 class MyImage implements SelectableControl {
@@ -91,3 +96,4 @@ class MyImage2 implements SelectableControl, PenStroke {
     color = 3;
     select() { }
 }
+

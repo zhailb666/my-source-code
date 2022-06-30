@@ -48,6 +48,7 @@ function getBirdOrFish():  Bird | Fish  {
     return b2;
 }
 
+
 const pet = getBirdOrFish()
 // b3.swim() error: 因为无法区分 Bird 或 Fish 而报错;
 
@@ -104,3 +105,59 @@ type Alias = { num: number }
 interface Interface {
     num: number;
 }
+
+// ------------------------------------------------------------------------------------------
+
+// keyof typeof 的联合使用
+let b = { a: 2 }
+
+type D = keyof typeof b
+
+
+type Diff<T extends string, U extends string> = ({ [P in T]: P } & { [P in U]: never })[T];
+// type Omit<T, K extends keyof T> = Pick<T, Diff<keyof T, K>>;
+type A = Diff<"a" | "b" | "c", "a">;        // "b" | "c"
+
+
+type C1 =  {
+     a: "a", 
+     b: "b",
+     c: "c"
+} & {
+     b: never,
+     d: never
+}
+
+type C2 = C1["a" | "b" | "c"]
+
+function isNumber(x: any): x is number {
+    return typeof x === "number";
+}
+
+type ConvertNumberToString<T> = {
+  [K in keyof T]: T[K] extends string ? string : T[K]
+}
+
+
+
+type MyParameters<T extends (...args: any[]) => any> = T extends (...args: infer P) => any ? P : never;
+type Func = (user: string, user1: Number) => void
+
+type Param = MyParameters<Func>
+
+interface SomeProps {
+    a: string,
+    b: number,
+    c: (e: MouseEvent) => void,
+    d: (e: MouseEvent) => void,
+    e: object,
+}
+
+type D3 = { [P in keyof SomeProps]:  SomeProps[P] extends (...args: any[]) => any ? SomeProps[P] : never }
+type OmitNever<T> = Pick<T, {[P in keyof T]: T[P] extends never ? never : P}[keyof T]>;
+
+type T1 = OmitNever<D3>;   
+
+
+type D1 =  keyof SomeProps
+type D2 =  SomeProps[keyof SomeProps]

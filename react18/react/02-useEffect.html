@@ -1,0 +1,43 @@
+<!--
+ * @Author: your name
+ * @Date: 2022-06-23 18:15:53
+ * @Description: file content
+-->
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <!--  metadata goes here   -->
+    <title>React.useId</title>
+</head>
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="../libs/react-dom-client.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+
+<body>
+    <div id="root"></div>
+</body>
+<script type="text/babel">
+    let preId = null
+    function Parent() {
+        let [count, setCount] = React.useState(0)
+        React.useEffect(() => {
+           console.log(count)
+            return () => {
+                // 清除订阅
+                console.log('销毁')
+            };
+        }, [count]);
+        return (
+            <div onClick={() => { setCount(++count)}  }>
+                <label>click change count:{ count }</label>
+            </div>
+        );
+    }
+
+    let root = ReactDOMClient.createRoot(document.getElementById('root'));
+    root.render(<Parent />)
+</script>
+
+</html>

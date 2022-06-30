@@ -11,7 +11,6 @@ interface Fn2 {
    (n: number): number
 }
 
-
 let a3: Fn1 = (v) => {
     return 2* parseInt(v)
 }
@@ -53,5 +52,6 @@ function add (arg1: string | number, arg2?: string | number) {
 }
 
 console.log(add(1))
+
 
 

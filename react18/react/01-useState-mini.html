@@ -1,0 +1,132 @@
+<!--
+ * @Author: your name
+ * @Date: 2022-06-28 15:03:05
+ * @Description: file content
+-->
+<!--
+ * @Author: your name
+ * @Date: 2022-06-23 18:13:31
+ * @Description: file content
+-->
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <!--  metadata goes here   -->
+    <title>React.useId</title>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+<script>
+   let workInProgressHook;
+    let isMount = true;
+
+    const fiber = {
+        memoizedState: null,
+        stateNode: App
+    };
+
+    function schedule() {
+        workInProgressHook = fiber.memoizedState;
+        const app = fiber.stateNode();
+        isMount = false;
+        return app;
+    }
+    // 创建update 并将update形成一个环状链表
+    function dispatchAction(queue, action) {
+        const update = {
+            action,
+            next: null
+        }
+        if (queue.pending === null) {
+            update.next = update;
+        } else {
+            update.next = queue.pending.next;
+            queue.pending.next = update;
+        }
+        // 3 -> 0 -> 1 -> 2 -> 3(queue.pending)
+        queue.pending = update;
+
+        schedule();
+    }
+
+    function useState(initialState) {
+        console.log(initialState, 'initialState')
+        let hook;
+
+        if (isMount) {
+            hook = {
+                queue: {
+                    pending: null
+                },
+                memoizedState: initialState,
+                next: null
+            }
+            if (!fiber.memoizedState) {
+                fiber.memoizedState = hook;
+            } else {
+                workInProgressHook.next = hook;
+            }
+
+            workInProgressHook = hook;
+        } else {
+            hook = workInProgressHook;
+            workInProgressHook = workInProgressHook.next;
+        }
+
+        let baseState = hook.memoizedState;
+        // hook.queue.pending 保存了最后一个update
+        // hook.queue.pending.next 第一个update
+        if (hook.queue.pending) {
+            let firstUpdate = hook.queue.pending.next;
+
+            do {
+                const action = firstUpdate.action;
+                baseState = action(baseState);
+                //  console.log(firstUpdate == hook.queue.pending, 'start-firstUpdate !== hook.queue.pending')
+                firstUpdate = firstUpdate.next;
+                console.log(firstUpdate == hook.queue.pending, 'firstUpdate !== hook.queue.pending')
+            } while (firstUpdate !== hook.queue.pending)
+
+            hook.queue.pending = null;
+        }
+        hook.memoizedState = baseState;
+
+        return [baseState, dispatchAction.bind(null, hook.queue)];
+    }
+
+    function App() {
+        const [num, updateNum] = useState(0);
+        let num1, updateNum1
+        if(num == 1) {
+           const  [n1, uNum1] = useState(0);
+           num1 = n1
+        } else {
+            const  [nt1, ueNum1] = useState(2);
+            num1 = nt1
+        }
+        const [num2, updateNum2] = useState(3);
+
+        console.log(`${isMount ? 'mount' : 'update'} num: `, num);
+        console.log(`${isMount ? 'mount' : 'update'} num1: `, num1);
+        console.log(`${isMount ? 'mount' : 'update'} num1: `, num2);
+
+        return {
+            click() {
+                // updateNum(num => num + 1);
+                updateNum(num => num + 1);
+                // updateNum(num => num + 3);
+                // updateNum1(num1 => num1 + 4);
+            },
+            click1() {
+                updateNum1(num => num + 1);
+            }
+        }
+    }
+
+    window.app = schedule();
+</script>
+
+</html>
