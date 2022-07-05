@@ -20,22 +20,24 @@
 </body>
 <script type="text/babel">
     let preId = null
+    let oldMemoizedAction = null
+    let oldAction = null
     function Parent() {
         let [count, setCount] = React.useState(0)
-        React.useEffect(() => {
-           console.log(count)
-            return () => {
-                // 清除订阅
-                console.log('销毁')
-            };
-        }, [count]);
-        React.useEffect(() => {
-           console.log(count)
-            return () => {
-                // 清除订阅
-                console.log('无依赖，只要有state变化就会执行')
-            };
-        });
+       const memoizedAction =  React.useCallback(() => {
+           console.log('方法保持不变')
+        }, []);
+       const action =  () => {
+           console.log('方法每次都重新赋值')
+        };
+        console.log(oldMemoizedAction === memoizedAction, 'oldMemoizedAction = memoizedAction')
+        console.log(action === oldAction, 'action = oldAction')
+        if(memoizedAction && oldMemoizedAction) {
+             memoizedAction()
+        } else {
+            oldMemoizedAction = memoizedAction
+            oldAction = action
+        }
         return (
             <div onClick={() => { setCount(++count)}  }>
                 <label>click change count:{ count }</label>

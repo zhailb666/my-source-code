@@ -20,26 +20,24 @@
 </body>
 <script type="text/babel">
     let preId = null
+    let oldMemoizedValue = null
+    let oldValue = null
     function Parent() {
         let [count, setCount] = React.useState(0)
-        React.useEffect(() => {
-           console.log(count)
-            return () => {
-                // 清除订阅
-                console.log('销毁')
-            };
-        }, [count]);
-        React.useEffect(() => {
-           console.log(count)
-            return () => {
-                // 清除订阅
-                console.log('无依赖，只要有state变化就会执行')
-            };
-        });
+        const memoizedValue = React.useRef(() => ({ name: 'zlb' }), []);
+
+        console.log(oldMemoizedValue === memoizedValue, 'oldMemoizedValue === memoizedValue')
+        if(!oldValue) {
+            oldMemoizedValue = memoizedValue
+        }
         return (
-            <div onClick={() => { setCount(++count)}  }>
-                <label>click change count:{ count }</label>
+            <div>
+              <div onClick={ () => { setCount(++count); memoizedValue.current.focus() } }>
+                    <label>click change count:{ count }</label>
+                </div>
+                 <input ref={ memoizedValue } type="text" />
             </div>
+          
         );
     }
 

@@ -1,0 +1,94 @@
+<!--
+ * @Author: your name
+ * @Date: 2022-07-04 15:19:59
+ * @Description: file content
+-->
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <!--  metadata goes here   -->
+    <title>React.useId</title>
+</head>
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="../libs/react-dom-client.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+
+<body>
+    <div id="root"></div>
+</body>
+<script type="text/babel">
+    function FancyInput(props, ref) {
+        const inputRef = React.useRef();
+        // 自定义暴露给父组件的实例值
+        React.useImperativeHandle(ref, () => ({
+            showSelf: () => {
+                console.log('额外的实例值')
+            },
+            focus: () => {
+                inputRef.current.focus();
+            }
+        }));
+        // ref 传递
+        return <input ref={ inputRef }  />;
+    }
+    FancyInput = React.forwardRef(FancyInput);
+
+    let preId = null
+    let oldMemoizedValue = null
+    let oldMemoizedCValue = null
+    let oldValue = null
+    function Parent() {
+         const [isPending, startTransition] = React.useTransition();
+        let [count, setCount] = React.useState(0)
+        let [words, setWords] = React.useState([])
+        let [word, setWord] = React.useState([])
+        const memoizedValue = React.useRef(null, []);
+
+         function handleClick() {
+            startTransition(() => {
+                setCount(c => c + 1);
+            })
+        }
+        function handlerChange(e) {
+            const v = e.target.value
+            setWord(v)
+            const arr = new Array(10000).fill(1).map((_, index) => {
+                return `${v}_${index}`
+            })
+            // 优化前
+
+            // setWords(arr) 
+
+            // 优化后的代码
+
+            startTransition(() => {
+                setWords(arr)
+            })
+        }
+       
+        return (
+            <div>
+              <div onClick={ () => { 
+                handleClick()
+                } }>
+                   {
+                    isPending ? '加载中...' : <label>click change count:{ count }</label>
+                   } 
+                </div>
+                
+                <input value={word} onChange={handlerChange} ref={ memoizedValue } type="text" />
+                <ul>
+                    { words.map((v) => <li key={v}>{v}</li>)}
+                </ul>
+            </div>
+          
+        );
+    }
+
+    let root = ReactDOMClient.createRoot(document.getElementById('root'));
+    root.render(<Parent />)
+</script>
+
+</html>
