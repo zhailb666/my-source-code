@@ -32,7 +32,7 @@
 - 【小程序云函数开发】
 
 #### 7月
-- <a href='https://github.com/zhailb666/my-source-code/tree/master/react18'>react hooks api demo</a>,
+- <a href='https://github.com/zhailb666/my-source-code/tree/master/react18'>react hooks api demo</a>
 
 ### 前端知识体系
 [前端知识体系](https://juejin.im/post/6860776234469720072)
