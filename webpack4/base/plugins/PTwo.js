@@ -1,3 +1,8 @@
+/*
+ * @Author: your name
+ * @Date: 2020-08-20 17:32:08
+ * @Description: file content
+ */
 const fs = require('fs');
 const ejs = require('ejs');
 const path = require('path');
@@ -16,7 +21,7 @@ class PTwo {
                 fs.writeFileSync(`${htmlPath}/index.html`, code)
             }
             emitFile()
-            console.log('在将内存中 assets 内容写到磁盘文件夹之后')
+            console.log('tapAsync:afterEmit')
             next()
         })
     }
