@@ -6,3 +6,4 @@
 export let b:any = 995
 
 console.log(b)
+

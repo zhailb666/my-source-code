@@ -33,6 +33,7 @@
 
 #### 7月
 - <a href='https://github.com/zhailb666/my-source-code/tree/master/react18'>react hooks api demo</a>
+- <a href='https://github.com/zhailb666/my-source-code/tree/master/type-script/02-tsconfig/src/01-tsx.ts'>接口函数类型判断 & any、unknown、never 和 void 区别</a>
 
 ### 前端知识体系
 [前端知识体系](https://juejin.im/post/6860776234469720072)
