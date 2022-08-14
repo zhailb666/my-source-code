@@ -12,12 +12,11 @@ module.exports ={
       other: "./src/index.splitChunks.other.js",
     },
     output: {
-        filename: 'bundle.[hash].js',
+        // filename: 'bundle.[hash].js',
         path: path.resolve(__dirname, 'dist1', 'splitChunks'),
-        library: 'zlb',
-        libraryTarget: 'umd',
-        // chunkLoadingGlobal: 'zlb_f',
-        crossOriginLoading: 'anonymous'
+        filename: '[name].[hash:8].js',
+        sourceMapFilename: '[name].[hash:8].map',
+        chunkFilename: '[id].[hash:8].js'
     },
     devServer: {
       hot: true,
@@ -39,7 +38,7 @@ module.exports ={
             chunks: 'initial', // 主要如果配置为 all的时候 maxSize 无效
             minSize: 0,
             minChunks: 2,
-            maxSize: 1024000 // 1024kb
+            // maxSize: 1024000 // 1024kb
           }
         }
       }

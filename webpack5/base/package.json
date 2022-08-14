@@ -1,0 +1,34 @@
+{
+  "name": "base",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.11.4",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-react": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "ejs": "^3.1.5",
+    "happypack": "^5.0.1",
+    "html-webpack-plugin": "^4.3.0",
+    "jquery": "^3.5.1",
+    "less": "^3.12.2",
+    "moment": "^2.27.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.10.0"
+  },
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "build-noParse": "webpack --config optimization-webpack-config/noParse.js",
+    "build-ignorePlugin": "webpack --config optimization-webpack-config/ignorePlugin.js",
+    "build-dllPlugin": "webpack --config optimization-webpack-config/dllPlugin-react.js && webpack --config optimization-webpack-config/dllPlugin.js",
+    "build-dllPlugin-react": "webpack --config optimization-webpack-config/dllPlugin-react.js",
+    "build-happypack": "webpack --config optimization-webpack-config/happypackPlugin.js",
+    "build-selfOptimization": "webpack --config optimization-webpack-config/selfOptimization.js",
+    "build-splitChunks": "webpack --config optimization-webpack-config/splitChunks.js",
+    "build4": "webpack4"
+  }
+}
