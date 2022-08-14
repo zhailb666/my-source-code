@@ -8,7 +8,7 @@ let startTime = Date.now()
 class SomePluginsLifeCycle {
     apply(compiler) {
         compiler.hooks.entryOption.tap('entryOption', function(context, entry) {
-            console.log('*entryOption: 初始化 option');
+            console.log(entry, '*entryOption: 初始化 option');
             startTime = Date.now()
         })
 

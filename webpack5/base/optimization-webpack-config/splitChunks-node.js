@@ -3,9 +3,11 @@
  * @Date: 2022-08-07 17:12:11
  * @Description: file content
  */
-let path = require('path');
+// let path = require('path');
+const webpack = require('webpack');
+const path = require('path')
 
-module.exports = {
+webpack({
     mode: 'development',
     entry: {
       index: "./src/index.splitChunks.js",
@@ -70,4 +72,4 @@ module.exports = {
       ],
   },
   plugins: []
-}
+})

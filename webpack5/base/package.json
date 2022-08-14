@@ -29,6 +29,12 @@
     "build-happypack": "webpack --config optimization-webpack-config/happypackPlugin.js",
     "build-selfOptimization": "webpack --config optimization-webpack-config/selfOptimization.js",
     "build-splitChunks": "webpack --config optimization-webpack-config/splitChunks.js",
-    "build4": "webpack4"
+    "build4": "webpack4",
+    "build:me": "node ./build/index.js",
+    "build:split": "node ./optimization-webpack-config/splitChunks-node.js"
+  },
+  "devDependencies": {
+    "webpack-bundle-analyzer": "^4.5.0",
+    "webpack-merge": "^5.8.0"
   }
 }
